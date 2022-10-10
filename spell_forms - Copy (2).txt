@@ -1,19 +1,20 @@
-(Of) Faith
+(of) Faith
 -Beam
--Bind
--Bond
 -Burst
 -Change
--Clap
--Craft
 -Kill
 -Pocket
--Port
 -Quake
 -Skin
--Speak
 -Technics
--Vision
+-bind
+-bond
+-clap
+-craft
+-port
+-skin
+-speak
+-vision
 Abound
 Alarm
 Ally
@@ -82,12 +83,10 @@ Mark
 Messenger
 Missile
 Mouth
-Of Death
 Of Disaster
 Of Movement
 Of The Gods
 Of The Waves
-Of Vengeance
 Orb
 Pattern
 Plague
@@ -152,3 +151,5 @@ Whip
 Whirlwind
 Whispers
 Word
+of Death
+of Vengeance

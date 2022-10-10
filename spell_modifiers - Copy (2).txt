@@ -2,12 +2,13 @@ Absorb
 Alter
 Animate
 Arcane
-Armor Of
+Armor of
 Astral
 Aura Of
 Awaken
 Banishing
 Beacon Of
+Beacon of
 Beast(s)
 Bestow
 Binding
@@ -25,7 +26,7 @@ Caustic
 Chain
 Charm
 Circle Of
-Cloud Of
+Cloud of
 Command
 Commune With
 Compelled
@@ -35,11 +36,12 @@ Conjure
 Contact
 Continuous
 Control
-Cordon Of
+Cordon of
 Counter-
 Create
 Crown Of
-Crusader's
+Crown of
+Crusader'S
 Cure
 Dancing
 Dark
@@ -58,6 +60,7 @@ Divine
 Dominate
 Dragon's
 Enhance
+Enhance
 Enlarge
 Ensnaring
 Entangle
@@ -74,22 +77,23 @@ Feign
 Find
 Find The
 Finger Of
+Finger of
 Flesh To
 Floating
 Flock Of
 Fore-
-Fortune's
+Fortune'S
 Gentle
 Giant
-Gift Of
+Gift of
 Globe Of
 Glyph Of
 Good
 Grasping
 Greater
 Guardian Of
-Hail Of
-Hand Of
+Hail of
+Hand of
 Healing
 Heat
 Hellish
@@ -106,7 +110,6 @@ Instant
 Investiture Of
 Irresistable
 Lesser
-Lingering
 Locate
 Long
 Lure
@@ -131,7 +134,7 @@ Mold
 Motivational
 Move
 Non-
-Orb Of
+Orb of
 Pass-
 Phantasmal
 Phantom
@@ -145,17 +148,19 @@ Produce
 Programmed
 Project
 Protection From
+Protection from
 Pulse
 Purify
 Pyro-
 Raise
 Ravenous
 Ray Of
+Ray of
 Re-
 Reduce
 Remove
 Resiliant
-Resistance To
+Resistance to
 Reverse
 Sacred
 Savage
@@ -164,13 +169,14 @@ Secret
 See
 Shape
 Shatter
-Shield Of
+Shield of
 Shift
 Shocking
 Silent
 Smite
 Spare
 Speak With
+Speak with
 Spider
 Spirit
 Spritual
@@ -187,7 +193,7 @@ Temporal
 Tether
 Thunderous
 Tiny
-Toll The
+Toll the
 Transmute
 Transport Via
 True
@@ -196,10 +202,11 @@ Vampiric
 Vicious
 Vitriolic
 Wall Of
+Wall of
 Ward
 Warding
 Watery
-Wave Of
+Wave of
 Word Of
 Wrath Of
 Wrathful

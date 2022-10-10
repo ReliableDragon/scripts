@@ -21,6 +21,8 @@ def main():
         spellword = spellword.title()
 
         spellwords = filetext.strip().split('\n')
+        spellwords = list({word.title() for word in spellwords})
+
         if spellword in spellwords:
             print('Spellword already present!')
             continue

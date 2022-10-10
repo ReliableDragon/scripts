@@ -1,5 +1,5 @@
-(The) Dead
-(The) Dying
+(the) Dead
+(the) Dying
 Aberration
 Ability
 Acid
@@ -13,7 +13,7 @@ Antimagic
 Antipathy
 Arcane
 Armor
-Arrow(S)
+Arrow(s)
 Astral
 Augury
 Awaken
@@ -128,7 +128,7 @@ Gravity
 Grease
 Greater Demon
 Greed
-Green-Flame
+Green-flame
 Guardians
 Guidance
 Guiding

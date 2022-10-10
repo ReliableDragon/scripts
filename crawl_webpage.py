@@ -38,7 +38,6 @@ class SiteCrawler():
         self.site = site
         self.maxDepth = maxDepth
         self.restrictDomain = restrictDomain
-        self.abstract_nouns = {}
         self.found_modifiers = set()
         self.found_essences = set()
         self.found_forms = set()
@@ -146,68 +145,6 @@ class SiteCrawler():
 
             with open('pkl_classifier.pkl', 'wb') as file:
                 pickle.dump(self.classifier, file)
-
-
-# def crawlPage(site, title, maxDepth, pages, links, restricted = False, siteBase = ""):
-    
-#     try:
-#         print("Crawling " + site + ", with maxDepth = " + str(maxDepth))
-#         http = httplib2.Http()
-#         status, response = http.request(site)
-
-#         soupPage = BeautifulSoup(response, "html.parser", parse_only=SoupStrainer('a'))
-#         for link in soupPage:
-#             if link.has_attr('href'):
-#                 linkedPage = link['href']
-#                 linkedPage = urljoin(site, linkedPage)
-#                 print("Getting title for " + linkedPage)
-                
-#                 try:
-#                     if not linkedPage in titles:
-#                         soup = BeautifulSoup(urllib2.urlopen(linkedPage), "html.parser")
-#                         linkTitle = soup.title.string
-#                         soup.decompose()
-#                         #titles[linkedPage] = linkTitle
-                        
-#                     else:
-#                         linkTitle = titles[linkedPage]
-
-#                     links.add((title, linkTitle))
-#                     if not linkTitle in pages and not "youtube" in linkedPage and not (restricted and not siteBase in linkedPage):
-#                         pages.add(linkTitle)
-#                         if (maxDepth > 1):
-#                             crawlPage(linkedPage, linkTitle, maxDepth-1, pages, links, restricted, siteBase)
-
-#                 except Exception as e:
-#                     print("Error parsing " + linkedPage + "! {0}".format(e))
-#                     links.add((title, linkedPage[linkedPage.find("http:\\")+7:]))
-#                     if not linkedPage[linkedPage.find("http:\\")+7:] in pages and not (restricted and not siteBase in linkedPage):
-#                         pages.add(linkedPage[linkedPage.find("http:\\")+7:])
-#                         if (maxDepth > 1):
-#                             crawlPage(linkedPage, linkTitle, maxDepth-1, pages, links, restricted, siteBase)
-
-#                 #pages.add(linkedPage)
-#         soupPage.decompose()
-#     except Exception as e:
-#         print ("Error on site " + site + ": {0}".format(e))
-#     gc.collect()
-
-# def getTitles(s):
-#     returnSet = set()
-#     for pair in s:
-#         try:
-#             soup = BeautifulSoup(urllib2.urlopen(pair[0]), "html.parser")
-#             linkTitle1 = soup.title.string
-#         except:
-#             linkTitle1 = pair[0]
-            
-#         try:
-#             soup = BeautifulSoup(urllib2.urlopen(pair[1]), "html.parser")
-#             linkTitle2 = soup.title.string
-#         except:
-#             linkTitle2 = pair[1]
-#         returnSet.add((linkTitle1, linkTitle2))
-#     return returnSet
 
 
 if __name__ == '__main__':

@@ -7,6 +7,9 @@ FORMS_FILE = 'spell_forms.txt'
 MODIFIERS_35_FILE = 'modifiers_35.txt'
 ESSENCES_35_FILE = 'essences_35.txt'
 FORMS_35_FILE = 'forms_35.txt'
+MODIFIERS_DICT_FILE = 'modifiers_dict.txt'
+ESSENCES_DICT_FILE = 'essences_dict.txt'
+FORMS_DICT_FILE = 'forms_dict.txt'
 VERB_FILE = 'verbs.txt'
 ADJECTIVE_FILE = 'adjectives.txt'
 ABSTRACT_NOUN_FILE = 'abstract_nouns.txt'
@@ -19,6 +22,9 @@ def ImportSpellKeywords():
     forms_35 = open(FORMS_35_FILE, 'r')
     modifiers_35 = open(MODIFIERS_35_FILE, 'r')
     essences_35 = open(ESSENCES_35_FILE, 'r')
+    forms_dict = open(FORMS_DICT_FILE, 'r')
+    modifiers_dict = open(MODIFIERS_DICT_FILE, 'r')
+    essences_dict = open(ESSENCES_DICT_FILE, 'r')
     forms = open(FORMS_FILE, 'r')
     verbs = open(ADJECTIVE_FILE, 'r')
     adjectives = open(VERB_FILE, 'r')
@@ -30,6 +36,9 @@ def ImportSpellKeywords():
     values['modifiers_35'] = [w.title() for w in modifiers_35.read().split('\n')]
     values['essences_35'] = [w.title() for w in essences_35.read().split('\n')]
     values['forms_35'] = [w.title() for w in forms_35.read().split('\n')]
+    values['modifiers_dict'] = [w.title() for w in modifiers_dict.read().split('\n')]
+    values['essences_dict'] = [w.title() for w in essences_dict.read().split('\n')]
+    values['forms_dict'] = [w.title() for w in forms_dict.read().split('\n')]
     values['verbs'] = [w.title() for w in verbs.read().split('\n')]
     values['adjectives'] = [w.title() for w in adjectives.read().split('\n')]
     values['abstract_nouns'] = [w.title() for w in abstract_nouns.read().split('\n')]
@@ -86,6 +95,9 @@ def GenerateBuckets(spellwords):
     modifiers_35 = spellwords['modifiers_35']
     essences_35 = spellwords['essences_35']
     forms_35 = spellwords['forms_35']
+    modifiers_dict = spellwords['modifiers_dict']
+    essences_dict = spellwords['essences_dict']
+    forms_dict = spellwords['forms_dict']
     worse_modifiers = spellwords['verbs'] + spellwords['adjectives']
     worse_essences = spellwords['abstract_nouns']
     worse_forms = spellwords['concrete_nouns']
@@ -93,7 +105,7 @@ def GenerateBuckets(spellwords):
     local_modifiers = None
     r_mod = random.random()
     if r_mod < probability_worse:
-        local_modifiers = worse_modifiers
+        local_modifiers = modifiers_dict
     elif r_mod < probability_35 + probability_worse:
         local_modifiers = modifiers_35
     else:
@@ -102,7 +114,7 @@ def GenerateBuckets(spellwords):
     local_essences = None
     e_mod = random.random()
     if e_mod < probability_worse:
-        local_essences = worse_essences
+        local_essences = essences_dict
     elif r_mod < probability_35 + probability_worse:
         local_essences = essences_35
     else:
@@ -111,7 +123,7 @@ def GenerateBuckets(spellwords):
     local_forms = None
     r_mod = random.random()
     if r_mod < probability_worse:
-        local_forms = worse_forms
+        local_forms = forms_dict
     elif r_mod < probability_35 + probability_worse:
         local_forms = forms_35
     else:
@@ -121,7 +133,7 @@ def GenerateBuckets(spellwords):
 
 def GenerateSpell(spellwords, spell_format=None):
     combine_nouns = True
-    combination_probability = 0.8
+    combination_probability = 0.1
     local_modifiers, local_essences, local_forms = GenerateBuckets(spellwords)
     prepositions = ['from', 'of', 'to', 'with']
     # if combine_nouns:
@@ -138,9 +150,9 @@ def GenerateSpell(spellwords, spell_format=None):
         if f == 'M':
             if combine_nouns:
                 if random.random() < combination_probability:
-                    spell += random.choice(local_modifiers)
-                else:
                     spell += random.choice(local_forms) + ' ' + random.choice(prepositions)
+                else:
+                    spell += random.choice(local_modifiers)
             else:
                 spell += random.choice(local_modifiers)
         elif f == 'E':
@@ -149,11 +161,10 @@ def GenerateSpell(spellwords, spell_format=None):
             spell += random.choice(local_essences)
         elif f == 'F':
             if combine_nouns:
-                r = random.random()
-                if r < combination_probability:
-                    spell += random.choice(local_forms)
-                else:
+                if random.random() < combination_probability:
                     spell += random.choice(prepositions) + ' ' + random.choice(local_essences)
+                else:
+                    spell += random.choice(local_forms)
             else:
                 spell += random.choice(local_forms)
         prev_f = f

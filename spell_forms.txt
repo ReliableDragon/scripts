@@ -65,8 +65,7 @@ Growth
 Guardians
 Guards
 Hail
-Hand
-Hands
+Hand(s)
 Immunity
 Infestation
 Jar
@@ -94,9 +93,9 @@ Plague
 Prison
 Projection
 Protection
+Pulse
 Quiver
 Radiance
-Ravage
 Ray
 Rebuke
 Repose
@@ -133,6 +132,8 @@ Summons
 Swarm
 Symbol
 Terrain
+Tether
+To Flesh
 To Stone
 Touch
 Tower
@@ -143,8 +144,7 @@ Trick
 Tsunami
 Walk
 Wall
-Ward
-Wards
+Ward(s)
 Warp
 Wave
 Weapon

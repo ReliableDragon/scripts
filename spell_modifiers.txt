@@ -14,6 +14,7 @@ Binding
 Black
 Blast
 Bless
+Blinding
 Bond
 Bones (Of The)
 Booming
@@ -24,11 +25,12 @@ Cause
 Caustic
 Chain
 Charm
+Chromatic
 Circle Of
 Cloud Of
 Command
 Commune With
-Compelled
+Compelling
 Comprehend
 Cone Of
 Conjure
@@ -64,6 +66,7 @@ Entangle
 Enthrall
 Erupting
 Expeditious
+Fabricate
 Faerie
 Faithful
 False
@@ -74,11 +77,13 @@ Feign
 Find
 Find The
 Finger Of
+Flaming
 Flesh To
 Floating
 Flock Of
 Fore-
 Fortune's
+Gaseous
 Gentle
 Giant
 Gift Of
@@ -88,7 +93,9 @@ Good
 Grasping
 Greater
 Guardian Of
+Guiding
 Hail Of
+Hallucinatory
 Hand Of
 Healing
 Heat
@@ -97,6 +104,7 @@ Hideous
 Hold
 Horrid
 Hunter's
+Hypnotic
 Illusory
 Immovable
 Incendiary
@@ -145,20 +153,23 @@ Produce
 Programmed
 Project
 Protection From
-Pulse
 Purify
 Pyro-
 Raise
+Ravage
 Ravenous
 Ray Of
 Re-
 Reduce
+Regenerate
+Reincarnate
 Remove
 Resiliant
 Resistance To
 Reverse
 Sacred
 Savage
+Scatter
 Searing
 Secret
 See
@@ -186,6 +197,7 @@ Telepathic
 Temporal
 Tether
 Thunderous
+Tidal
 Tiny
 Toll The
 Transmute

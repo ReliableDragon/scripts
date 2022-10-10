@@ -47,7 +47,7 @@ def GenerateSpell(spellwords):
         spell = modifier + ' ' + essence
     elif rand_form < 0.9:
         spell = essence + ' ' + form
-    elif rand_form < 0.9375:
+    elif rand_form < 0.95:
         spell = modifier + ' ' + form
     elif rand_form < 0.975:
         spell = modifier + ' ' + essence + ' ' + form

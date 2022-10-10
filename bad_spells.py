@@ -56,7 +56,7 @@ def GenerateSpell(spellwords):
     elif rand_form < 0.995:
         spell = modifier + ' ' + essence + ' and ' + random.choice(spellwords['essences'])
     else:
-        spell = essence + ' and ' + random.choice(spellwords['essences']) + form
+        spell = essence + ' and ' + random.choice(spellwords['essences']) + ' ' + form
     if ' -' in spell:
         dashloc = spell.find(' -')
         spell = spell[:dashloc] + spell[dashloc+1:].lower()

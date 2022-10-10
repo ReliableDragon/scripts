@@ -114,7 +114,11 @@ class SiteCrawler():
         # crawlPage(site, pageTitle, maxDepth, pages, links, restricted, siteBase)
 
     def ProcessText(self, texts):
+        i = 0
         for text in texts:
+            i += 1
+            if i % 1000 == 0:
+                print(f'Processed {i} words.')
             # tag_pairs = nltk.pos_tag(nltk.word_tokenize(text))
             token_text = self.nlp(text)
             for token in token_text:

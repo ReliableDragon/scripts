@@ -8,7 +8,7 @@ Aura Of
 Awaken
 Banishing
 Beacon Of
-Beast(s)
+Beast(S)
 Bestow
 Binding
 Black
@@ -16,7 +16,7 @@ Blast
 Bless
 Blinding
 Bond
-Bones (Of The)
+Bones Of
 Booming
 Burst
 Call
@@ -41,7 +41,7 @@ Cordon Of
 Counter-
 Create
 Crown Of
-Crusader's
+Crusader'S
 Cure
 Dancing
 Dark
@@ -58,7 +58,7 @@ Dissonant
 Distort
 Divine
 Dominate
-Dragon's
+Dragon'S
 Enhance
 Enlarge
 Ensnaring
@@ -75,14 +75,14 @@ Feather
 Feeble
 Feign
 Find
-Find The
 Finger Of
 Flaming
 Flesh To
 Floating
 Flock Of
 Fore-
-Fortune's
+Fortune'S
+Freezing
 Gaseous
 Gentle
 Giant
@@ -103,8 +103,9 @@ Hellish
 Hideous
 Hold
 Horrid
-Hunter's
+Hunter'S
 Hypnotic
+Identify
 Illusory
 Immovable
 Incendiary

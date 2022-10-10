@@ -1,5 +1,4 @@
-(The) Dead
-(The) Dying
+Dead
 Aberration
 Ability
 Acid
@@ -7,7 +6,6 @@ Aid
 Air
 Alacrity
 Animal(s)
-Animals
 Antilife
 Antimagic
 Antipathy
@@ -99,15 +97,14 @@ Fey
 Fiend
 Fire
 Flame(s)
-Flaming
 Flesh
-Fly
+Flight
 Fog
 Food
 Forbiddance
 Force
 Freedom
-Freezing
+Freeze
 Friends
 Friendship
 Frost
@@ -130,7 +127,7 @@ Hallucination
 Harm
 Haste
 Heal
-Healing
+Health
 Heroism
 Hex
 Holy
@@ -195,6 +192,7 @@ Prestidigitation
 Projection
 Psychic
 Purity
+Pyrotechnics
 Radiance
 Reality
 Recall
@@ -254,6 +252,7 @@ Teleport
 Teleportation
 Tentacles
 Thaumaturgy
+The Dying
 Thorn(s)
 Thoughts
 Thunder

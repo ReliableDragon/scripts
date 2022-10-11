@@ -102,13 +102,13 @@ class SiteCrawler():
             print(links)
             soupPage.decompose()
 
-        f = open('new_modifiers', 'w')
+        f = open('modifiers_new', 'w')
         f.write('\n'.join(self.found_modifiers))
         f.close()
-        f = open('new_essences', 'w')
+        f = open('essences_new', 'w')
         f.write('\n'.join(self.found_essences))
         f.close()
-        f = open('new_forms', 'w')
+        f = open('forms_new', 'w')
         f.write('\n'.join(self.found_forms))
         f.close()
         # crawlPage(site, pageTitle, maxDepth, pages, links, restricted, siteBase)
@@ -118,7 +118,7 @@ class SiteCrawler():
         for text in texts:
             i += 1
             if i % 1000 == 0:
-                print(f'Processed {i} words.')
+                print(f'Processed {i} text fragments.')
             # tag_pairs = nltk.pos_tag(nltk.word_tokenize(text))
             token_text = self.nlp(text)
             for token in token_text:

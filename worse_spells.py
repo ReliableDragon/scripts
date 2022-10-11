@@ -1,5 +1,6 @@
 import argparse
 import random
+import re
 
 class WorseSpells():
 
@@ -13,6 +14,9 @@ class WorseSpells():
         ('modifiers_pf.txt', 'modifiers_pf'),
         ('essences_pf.txt', 'essences_pf'),
         ('forms_pf.txt', 'forms_pf'),
+        ('modifiers_gurps.txt', 'modifiers_gurps'),
+        ('essences_gurps.txt', 'essences_gurps'),
+        ('forms_gurps.txt', 'forms_gurps'),
         ('modifiers_dict.txt', 'modifiers_dict'),
         ('essences_dict.txt', 'essences_dict'),
         ('forms_dict.txt', 'forms_dict'),
@@ -22,25 +26,111 @@ class WorseSpells():
         ('concrete_nouns.txt', 'concrete_nouns'),
     ]
 
-    def __init__(self):
-        self.spellwords = {}
+    FORMAT_MAP = {'M': 'modifiers', 'E': 'essences', 'F': 'forms'}
 
-    def ImportSpellKeywords(self):
-        for filename, keyword in self.FILENAMES_AND_KEYWORDS:
-            # print(f'Importing values from {filename}')
-            with open(filename, 'r') as file:
-                self.spellwords[keyword] = [w.title() for w in file.read().split('\n')]
+    def __init__(self, spell_format, filter):
+        self.spell_format = spell_format
+        self.filter = filter
+        self.word_sources = {}
 
-        self.spellwords['modifiers_worse'] = self.spellwords['verbs'] + self.spellwords['adjectives']
-        self.spellwords['essences_worse'] = self.spellwords['abstract_nouns']
-        self.spellwords['forms_worse'] = self.spellwords['concrete_nouns']
-
-    def GenerateSpells(self, n=1, format=None):
+    def GenerateSpells(self, n=1):
         self.ImportSpellKeywords()
         results = []
         for _ in range(n):
-            results.append(self.GenerateSpell(format))
+            results.append(self.GenerateSpell())
         return results
+
+    def ImportSpellKeywords(self):
+        for filename, keyword in self.FILENAMES_AND_KEYWORDS:
+            with open(filename, 'r') as file:
+                self.word_sources[keyword] = [w.title() for w in file.read().split('\n')]
+                if self.filter:
+                    filtered = list(filter(lambda a: re.search(self.filter, a, re.I), self.word_sources[keyword]))
+                    if filtered:
+                        self.word_sources[keyword + '_filtered'] = filtered
+        if self.filter and not any(['_filtered' in keyword for keyword in self.word_sources.keys()]):
+            raise ValueError(f'No values matched filter "{self.filter}".')
+
+    def GenerateSpell(self):
+        prepositions = ['from', 'of', 'to', 'with']
+        spell_format = self.spell_format
+        if not spell_format:
+            spell_format = self.GenerateSpellFormat()
+        # If the spell format uses the same kind twice, they will always be drawn from the same bucket.
+        # This makes filtering easier, and is a situation that only comes up rarely, but is suboptimal.
+        buckets = self.GenerateBuckets(spell_format)
+
+        spell = ''
+        prev_f = None
+        for f in spell_format:
+            if f:
+                spell += ' '
+            if f == 'M':
+                spell += random.choice(buckets['modifiers'])
+            elif f == 'P':
+                spell += random.choice(prepositions)
+            elif f == 'E':
+                if f == prev_f:
+                    spell += 'and '
+                spell += random.choice(buckets['essences'])
+            elif f == 'F':
+                spell += random.choice(buckets['forms'])
+            else:
+                raise ValueError(f'Got invalid spell format "{spell_format}".')
+            prev_f = f
+
+        if ' -' in spell:
+            dashloc = spell.find(' -')
+            spell = spell[:dashloc] + spell[dashloc+1:].lower()
+        if '- ' in spell:
+            dashloc = spell.find('- ')
+            spell = spell[:dashloc+1] + spell[dashloc+2:]
+        return spell
+
+    def GenerateBuckets(self, spell_format):
+        buckets = {}
+        buckets['modifiers'] = self.GetRandomSpellListOfType('modifiers')
+        buckets['essences'] = self.GetRandomSpellListOfType('essences')
+        buckets['forms'] = self.GetRandomSpellListOfType('forms')
+
+        if self.filter:
+            possible_swaps = []
+            for c in spell_format:
+                if c in self.FORMAT_MAP and self.FORMAT_MAP[c] not in possible_swaps:
+                        possible_swaps.append(self.FORMAT_MAP[c])
+
+            random.shuffle(possible_swaps)
+
+            swapped = False
+            for swap in possible_swaps:
+                filtered_bucket = self.GetRandomSpellListOfType(swap, filtered=True)
+                if filtered_bucket:
+                    swapped = True
+                    buckets[swap] = filtered_bucket
+                    break
+            if not swapped:
+                raise ValueError(f'Could not find valid swap for filter "{self.filter}".')
+
+        return buckets
+
+    def GetRandomSpellListOfType(self, base_type, filtered=False):
+        weights_and_suffixes = [
+            (15, '_dict'), # dictionary words
+            (35, '_35'), # 3.5 spells
+            (35, '_pf'), # pathfinder spells
+            (35, '_gurps'), # gurps spells
+            (35, ''), # 5e spells, no suffix for historical reasons
+        ]
+
+        if filtered:
+            # Filter out all suffixes corresponding to lists that have no values after filtering.
+            weights_and_suffixes = [(weight, suffix + '_filtered') for weight, suffix in weights_and_suffixes 
+                                    if base_type + suffix + '_filtered' in self.word_sources]
+            if not weights_and_suffixes:
+                return None
+
+        suffix = self.WeightedRandomChoice(weights_and_suffixes)
+        return self.word_sources[base_type + suffix]
 
     '''
     There are modifiers, essence nouns, and form nouns.
@@ -58,98 +148,69 @@ class WorseSpells():
     * modifier + essence noun + form noun: Absorb Stone Bolt
     '''
     def GenerateSpellFormat(self):
-        rand_form = random.random()
-        format = ''
-        if rand_form < 0.4:
-            format = 'ME'
-        elif rand_form < 0.8:
-            format = 'EF'
-        elif rand_form < 0.95:
-            format = 'MF'
-        elif rand_form < 0.975:
-            format = 'MEF'
-        elif rand_form < 0.99:
-            format = 'E'
-        elif rand_form < 0.995:
-            format = 'MEE'
-        else:
-            format = 'EEF'
+        recombine_nouns = True
+        recombination_probability = 0.05
+        weights_and_formats = [
+            (400, 'ME'),
+            (400, 'EF'),
+            (150, 'MF'),
+            (25, 'MEF'),
+            (14, 'E'),
+            (5, 'MEE'),
+            (5, 'EEF'),
+        ]
+
+        # Filter out formats that don't include at least one valid part if there's a filter.
+        if self.spell_format:
+            valid_format_parts = self.GetValidFormatParts()
+            weights_and_formats = list(filter(
+                lambda a: not valid_format_parts.isdisjoint(set(a[1])), weights_and_formats))
+            if not weights_and_formats:
+                raise ValueError(f'Filter of {self.filter} resulted in no valid auto-generated formats!')
+
+        format = self.WeightedRandomChoice(weights_and_formats)
+
+        # Do recombinations if enabled, after filtering out ones that would result in an invalid
+        # format if there's a filter.
+        # Technically there should be some check to see if the recombination would make the whole
+        # format invalid, but that's difficult, especially since easy approaches would bias towards
+        # changing the earlier symbols until the last change would make the format invalid.
+        recombinations = {'M': 'FP', 'F': 'PM'}
+        if self.spell_format:
+            recombinations = {k: v for k, v in recombinations.items() if not valid_format_parts.isdisjoint(set(v))}
+        for i, c in enumerate(format):
+            if c in recombinations.keys() and recombine_nouns and random.random() < recombination_probability:
+                format = format[:i] + recombinations[c] + format[i+1:]
+
         return format
 
-    def GetRandomBucket(self, base_type):
-        weights_and_suffixes = [
-            (15, '_dict'), # dictionary words
-            (35, '_35'), # 3.5 spells
-            (35, '_pf'), # pathfinder spells
-            (35, ''), # 5e spells, no suffix for historical reasons
-        ]
-        weight_total = sum(i for i, _ in weights_and_suffixes)
-
+    def WeightedRandomChoice(self, weights_and_values):
+        weight_total = sum(i for i, _ in weights_and_values)
+        # Pick a format via weighted random selection.
         r_mod = random.randint(1, weight_total)
         total = 0
-        for weight, suffix in weights_and_suffixes:
+        for weight, value in weights_and_values:
             total += weight
             if total >= r_mod:
-                return self.spellwords[base_type + suffix]
-        raise ValueError(f'Using r_mod of {r_mod}, somehow never reached a valid weight!')
+                return value
+        raise ValueError(f'Generated values of {r_mod}, which is not valid for choosing a format.')
 
-    def GenerateBuckets(self):
-        local_modifiers = self.GetRandomBucket('modifiers')
-        local_essences = self.GetRandomBucket('essences')
-        local_forms = self.GetRandomBucket('forms')
-
-        return local_modifiers, local_essences, local_forms
-
-    def GenerateSpell(self, spell_format=None):
-        combine_nouns = True
-        combination_probability = 0.1
-        prepositions = ['from', 'of', 'to', 'with']
-        if not spell_format:
-            spell_format = self.GenerateSpellFormat()
-        spell = ''
-        prev_f = None
-        for f in spell_format:
-            local_modifiers, local_essences, local_forms = self.GenerateBuckets()
-            if f:
-                spell += ' '
-            if f == 'M':
-                if combine_nouns:
-                    if random.random() < combination_probability:
-                        spell += random.choice(local_forms) + ' ' + random.choice(prepositions)
-                    else:
-                        spell += random.choice(local_modifiers)
-                else:
-                    spell += random.choice(local_modifiers)
-            elif f == 'E':
-                if f == prev_f:
-                    spell += 'and '
-                spell += random.choice(local_essences)
-            elif f == 'F':
-                if combine_nouns:
-                    if random.random() < combination_probability:
-                        spell += random.choice(prepositions) + ' ' + random.choice(local_essences)
-                    else:
-                        spell += random.choice(local_forms)
-                else:
-                    spell += random.choice(local_forms)
-            prev_f = f
-
-        if ' -' in spell:
-            dashloc = spell.find(' -')
-            spell = spell[:dashloc] + spell[dashloc+1:].lower()
-        if '- ' in spell:
-            dashloc = spell.find('- ')
-            spell = spell[:dashloc+1] + spell[dashloc+2:]
-        return spell
+    def GetValidFormatParts(self):
+        valid_parts = set()
+        for c, type in self.FORMAT_MAP.items():
+            if any([part_list for part_list in self.word_sources if re.search(fr'{type}_.*_filtered', part_list)]):
+                valid_parts.add(c)
+        return valid_parts
 
 def main():
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('--num_spells', '-n', dest='num_spells', nargs='?', type=int, default=1)
-    parser.add_argument('--spell_format', '-f', dest='spell_format', nargs='?', type=str, default=None)
+    parser.add_argument('--spell_format', '-sf', dest='spell_format', nargs='?', type=str, default=None)
+    parser.add_argument('--filter', '-f', dest='filter', nargs='?', type=str, default=None)
     args = parser.parse_args()
     print(f'Generating {args.num_spells} spell(s):')
-    spell_generator = WorseSpells()
-    spells = spell_generator.GenerateSpells(args.num_spells, args.spell_format)
+    spell_generator = WorseSpells(args.spell_format, args.filter)
+    spells = spell_generator.GenerateSpells(args.num_spells)
     for spell in spells:
         print(spell)
 

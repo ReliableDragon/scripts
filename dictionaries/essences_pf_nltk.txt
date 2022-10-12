@@ -9,7 +9,6 @@ die
 moonstruck
 dance
 deja
-k
 wyvern
 enchantment
 scurrying
@@ -24,7 +23,6 @@ inclusion
 combustion
 crouching
 mania
-q
 bidder
 coder
 recurrence
@@ -99,7 +97,6 @@ paint
 herein
 artifice
 injustice
-mf
 pepper
 gameplay
 howling
@@ -273,7 +270,6 @@ precision
 mourning
 kama
 antagonizing
-cn
 condition
 existing
 wagon
@@ -303,7 +299,6 @@ otherness
 winch
 network
 transmitting
-gp
 adrift
 knell
 efficacy
@@ -380,7 +375,6 @@ crowds
 evaluating
 entropy
 victory
-z
 inactivity
 outlander
 penance
@@ -439,7 +433,6 @@ road
 tradition
 scrounging
 ivy
-vi
 radiation
 providence
 entourage
@@ -540,7 +533,6 @@ variety
 kiss
 independence
 stone
-ii
 wit
 apply
 dusty
@@ -555,14 +547,12 @@ vine
 thrower
 knight
 affinity
-ma
 suspicion
 intensity
 having
 revulsion
 sleeps
 lair
-b
 abbreviation
 bastion
 deathless
@@ -611,8 +601,6 @@ revisit
 sha
 surplice
 armorer
-f
-fm
 birch
 mortis
 rage
@@ -815,7 +803,6 @@ reconstruct
 convenience
 giving
 envying
-hd
 functionality
 conform
 celebration
@@ -878,7 +865,6 @@ horseback
 brine
 compatibility
 larceny
-df
 health
 partition
 snaring
@@ -972,10 +958,8 @@ buoyancy
 skirmish
 element
 feuding
-rd
 sack
 studding
-cu
 racing
 levitate
 admiration
@@ -1136,7 +1120,6 @@ pine
 suspect
 placement
 training
-y
 diviner
 jammer
 maim
@@ -1159,9 +1142,7 @@ mossy
 gel
 propulsion
 witness
-h
 grit
-mu
 conviction
 breadth
 rarity
@@ -1190,7 +1171,6 @@ flotsam
 edict
 accuracy
 shipment
-sp
 cab
 veneer
 propagation
@@ -1253,7 +1233,6 @@ descent
 efficiency
 adjusting
 shout
-ra
 riding
 tape
 emperor
@@ -1265,7 +1244,6 @@ variance
 hilltop
 leaf
 restrict
-sq
 multitude
 recognizing
 affliction
@@ -1314,7 +1292,6 @@ disarray
 vampire
 gale
 usefulness
-dr
 trove
 baring
 manifestation
@@ -1335,12 +1312,10 @@ imposing
 presentation
 insect
 bond
-j
 tendency
 drin
 recipe
 footwork
-ue
 kin
 confuse
 inclination
@@ -1563,7 +1538,6 @@ alignment
 apex
 terrain
 acclimating
-c
 rim
 advance
 claim
@@ -1661,7 +1635,6 @@ scepter
 host
 train
 meteor
-ac
 poisoner
 discernment
 avarice
@@ -1686,7 +1659,6 @@ essence
 radiance
 misdirection
 sending
-u
 leveling
 kaiju
 suit
@@ -1696,7 +1668,6 @@ bias
 clairvoyance
 radiating
 prestidigitation
-lb
 blink
 above
 traffic
@@ -1736,7 +1707,6 @@ tsunami
 attempt
 slay
 explaining
-cl
 shoot
 liberation
 aberration
@@ -2019,7 +1989,6 @@ culprit
 solvent
 changing
 permafrost
-v
 prostitute
 communication
 dedication
@@ -2032,12 +2001,10 @@ adjustment
 firing
 tombs
 filtering
-cr
 exhaustion
 evolution
 multiplanar
 burial
-ai
 guardsman
 succeeding
 detritus
@@ -2103,7 +2070,6 @@ commissioning
 gorge
 cult
 limiting
-p
 clip
 calculation
 communion
@@ -2189,7 +2155,6 @@ mice
 enmity
 flexibility
 malediction
-ft
 constricting
 swordplay
 totaling
@@ -2275,7 +2240,6 @@ mechanisms
 mutagen
 potion
 mauling
-cp
 joining
 demeanor
 graft
@@ -2326,7 +2290,6 @@ equator
 half
 place
 plot
-rk
 purpose
 interim
 opponent
@@ -2335,7 +2298,6 @@ stand
 warlord
 pitcher
 hypothermia
-d
 puppeteer
 prince
 align
@@ -2400,7 +2362,6 @@ crowbar
 slain
 clap
 grant
-es
 retraining
 maturity
 chopping
@@ -2450,7 +2411,6 @@ hind
 saline
 disinformation
 struck
-s
 swiveling
 amusement
 curio
@@ -2517,10 +2477,8 @@ prescription
 compensation
 rule
 concussive
-hr
 mention
 opium
-t
 evocation
 stir
 compensate
@@ -2540,7 +2498,6 @@ shaman
 maneuverability
 revelry
 swine
-nt
 grendel
 bliss
 friendship
@@ -2553,7 +2510,6 @@ mating
 humor
 harpy
 souls
-dc
 envy
 mist
 opposite
@@ -2638,7 +2594,6 @@ pitching
 downpour
 alley
 herself
-i
 simulation
 chakra
 notice
@@ -2823,7 +2778,6 @@ finishing
 intelligence
 architect
 vanquishing
-m
 encoding
 groundwork
 distance
@@ -2933,7 +2887,6 @@ aristocracy
 odor
 trampling
 apprenticeship
-l
 intake
 wrath
 warcraft
@@ -2965,7 +2918,6 @@ courting
 spirt
 science
 downfall
-su
 payment
 drawn
 phoenix
@@ -3053,7 +3005,6 @@ powdered
 friction
 contest
 honor
-r
 overlord
 exhausting
 exception
@@ -3185,8 +3136,6 @@ density
 bar
 encumbrance
 fleshing
-n
-sr
 flaw
 sleep
 updating
@@ -3251,7 +3200,6 @@ bungle
 help
 grass
 wrestling
-g
 comatose
 approximate
 bounty
@@ -3334,7 +3282,6 @@ schemer
 battle
 fungus
 reconstruction
-ca
 resentment
 archaeopteryx
 empathy
@@ -3402,7 +3349,6 @@ enacting
 sprouting
 invoking
 concussion
-pi
 gazing
 inviting
 persecution

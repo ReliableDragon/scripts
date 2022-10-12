@@ -10,7 +10,6 @@ filtration
 price
 cyberneticist
 distillation
-j
 nature
 scorpion
 gun
@@ -46,7 +45,6 @@ change
 intolerance
 purpose
 transmutation
-b
 motion
 horse
 death
@@ -63,7 +61,6 @@ falx
 hero
 scaling
 measurement
-h
 scrounging
 sensitivity
 creator
@@ -120,7 +117,6 @@ information
 chemistry
 stun
 effort
-d
 machine
 rapier
 flail
@@ -129,7 +125,6 @@ broadsword
 spectre
 gate
 sickness
-q
 reincarnation
 watchdog
 traction
@@ -144,7 +139,6 @@ sociology
 fertility
 friend
 sack
-m
 potion
 idea
 debility
@@ -179,7 +173,6 @@ introduction
 arab
 reference
 tr
-n
 divination
 food
 table
@@ -192,7 +185,6 @@ policy
 ability
 radar
 drift
-z
 racehorse
 disadvantage
 dinosaur
@@ -229,7 +221,6 @@ operation
 sending
 night
 language
-f
 guildhall
 vision
 dehydration
@@ -297,7 +288,6 @@ salient
 precision
 metal
 mace
-g
 monster
 teamwork
 centaur
@@ -355,7 +345,6 @@ path
 radiation
 armor
 bar
-t
 interface
 malfunction
 biting
@@ -413,7 +402,6 @@ elixir
 blindness
 adjustment
 rage
-s
 stuff
 maintenance
 crushing
@@ -432,7 +420,6 @@ jumping
 equipment
 therapy
 flash
-y
 psychologist
 excluding
 etc
@@ -502,7 +489,6 @@ fighter
 torture
 vehicle
 accordance
-p
 tolerance
 screaming
 pixie
@@ -533,7 +519,6 @@ appeal
 engineering
 undead
 blistering
-u
 spell
 sleeping
 discussion
@@ -621,7 +606,6 @@ description
 winch
 memorization
 decision
-r
 variolation
 fence
 tent
@@ -778,7 +762,6 @@ stoicism
 exposition
 field
 treasure
-l
 race
 literacy
 goblin
@@ -791,7 +774,6 @@ gambling
 soldier
 flying
 artist
-v
 philanthropist
 mas
 terrain

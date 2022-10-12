@@ -65,7 +65,6 @@ tying
 furtive
 defending
 fellows of
-ll
 weaker
 drowned
 click
@@ -159,7 +158,6 @@ bright
 witless
 thievery
 terrifying
-y
 prey of
 torrent
 headman
@@ -167,7 +165,6 @@ frightful
 division of
 dimness of
 gulfs
-vi
 recovering
 splendid
 high
@@ -349,9 +346,7 @@ red
 quail of
 produce
 scalps of
-s
 wise
-em
 bury
 due
 prowess of
@@ -403,7 +398,6 @@ foundered
 healer
 double
 charming
-p
 thirsting
 tomorrow of
 thwart
@@ -859,7 +853,6 @@ deadly
 ferocious
 exercising
 rejoice
-la
 contrary
 strategy of
 humble
@@ -935,7 +928,6 @@ penna
 uphill
 accompanying
 main
-cf
 seashore of
 rent
 epilogue of
@@ -1284,7 +1276,6 @@ warbling
 cone of
 denoting
 comfortable
-di
 peaceful
 proved
 removal
@@ -1337,12 +1328,10 @@ scrupulous
 popularly
 prefatory
 pride
-th
 hardcover
 declaim
 popping
 avoid
-au
 journey of
 list of
 answer
@@ -1533,7 +1522,6 @@ exit of
 modest
 aching
 gone
-ss
 declining
 arrangement of
 undersized
@@ -1682,13 +1670,11 @@ troubled
 inscribing
 clearest
 trodden
-m
 flaming
 giant of
 dishonoured
 curling
 enclose
-lo
 assortment of
 straggling
 paler
@@ -1896,7 +1882,6 @@ decade of
 whin
 magnificent
 praiseworthy
-ii
 searing
 none of
 ringing
@@ -1916,7 +1901,6 @@ eerie
 leaves
 uplifted
 signiﬁcant
-xx
 yelled
 dol
 oaken
@@ -2130,7 +2114,6 @@ shield
 speaker of
 feather of
 vapour
-ta
 storage of
 avenging
 hopping of
@@ -2216,7 +2199,6 @@ anion of
 welling
 inverted
 saith
-pp
 shiver
 ock
 intact
@@ -2269,7 +2251,6 @@ descriptive
 truant
 wove
 ambiguous
-t
 rocketing
 decrepitude
 all
@@ -2299,7 +2280,6 @@ quite
 darkened
 dragon
 wool of
-et
 anc
 daunt
 fingering
@@ -2433,7 +2413,6 @@ wrapping
 guiding
 unbidden
 spirit
-ha
 harps of
 taught
 perturbed
@@ -2502,7 +2481,6 @@ obscured
 shudder
 trapped
 tyrant
-ou
 swiftest
 towards
 repair of
@@ -2541,7 +2519,6 @@ kingdom of
 distorted
 instinct
 outhouse of
-hi
 rayed
 secure
 unknown
@@ -2559,7 +2536,6 @@ broom
 clotted
 despoiling
 warrant of
-ma
 interlacing
 chooser
 distinct
@@ -2707,7 +2683,6 @@ inscription of
 pleasant
 deal
 thronging
-ay
 wroth
 quest of
 revealed
@@ -2765,7 +2740,6 @@ overhead
 grappling of
 foretell of
 shal
-re
 scrambled
 dispute of
 contrive
@@ -3129,7 +3103,6 @@ bargaining of
 scour
 shaken
 build
-d
 champ
 survival of
 cautious
@@ -3326,7 +3299,6 @@ summoning
 prod
 stringing
 make
-iv
 purchase of
 conveying
 innkeeper of
@@ -3429,7 +3401,6 @@ reveal
 floating
 sunken
 warmer
-hl
 lots of
 cur
 bundle
@@ -3480,7 +3451,6 @@ unveiled
 flop
 indignant
 raft
-o
 vintage of
 unheard
 overhung
@@ -3590,7 +3560,6 @@ mend
 reduced
 wrapped
 outlast
-ff
 cloaked
 home
 arranging
@@ -3672,7 +3641,6 @@ spinning
 untrodden
 remind
 impede
-ve
 untutored
 arming
 bolster
@@ -3736,7 +3704,6 @@ fourteen
 guide of
 panelled
 built
-wo
 repeating
 greed
 escape
@@ -3746,7 +3713,6 @@ top
 slew of
 display of
 manage
-e
 intertwining
 mightier
 unsheathed
@@ -3758,7 +3724,6 @@ ship of
 looming
 renounce
 jugs of
-iu
 balancing
 fuller
 brings

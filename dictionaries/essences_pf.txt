@@ -89,7 +89,6 @@ materials
 Inscription
 flexibility
 armaments
-d
 Vulnerability
 enchantments
 Teleportation

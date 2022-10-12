@@ -164,7 +164,6 @@ quirk
 immovable
 prayer of
 gargoyle of
-d
 longbow
 overlord of
 following
@@ -201,7 +200,6 @@ related
 better
 end
 similar
-m
 category of
 impenetrable
 lifesaving
@@ -488,12 +486,10 @@ footwear
 subdermal
 uncontrollable
 control
-e
 hypnotic
 chapter of
 writing
 appear
-t
 margin of
 arctic
 intriguing
@@ -565,7 +561,6 @@ decorative
 epic
 fantasy
 be
-s
 esp
 deadening
 crucible
@@ -584,7 +579,6 @@ schtick
 rugose
 escape
 dwarven
-y
 am
 trepanning
 explorer of
@@ -667,7 +661,6 @@ inert
 paralyzing
 cinematic
 lasting
-p
 orange
 endurance of
 leprous
@@ -828,7 +821,6 @@ subline of
 sensualist
 halfling
 retractable
-o
 mystical
 fabulous
 terminal

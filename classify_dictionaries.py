@@ -84,7 +84,7 @@ class DictionaryClassifier():
         for filename in files_to_parse:
             filename = os.path.join(DICT_FILEPATH, filename)
             with open(filename, 'r', encoding='utf-8') as file:
-                words_to_classify = self.GetWordsAndTags(file.read())
+                words_to_classify += self.GetWordsAndTags(file.read())
                 # words_to_classify += [w.lower() for w in file.read().split('\n')]
         print(f'Processing {len(words_to_classify)} words.')
         i = 0

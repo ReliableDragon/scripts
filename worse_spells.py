@@ -31,6 +31,7 @@ class WorseSpells():
         # (100, '_gurps'), # gurps spells
         (100, '_gurps_spells_nltk'), # gurps spells
         (50, '_gurps_nltk'), # gurps spells
+        (100, '_items_35_nltk'), # magic items for spice
         (100, ''), # 5e spells, no suffix for historical reasons
     ]
 

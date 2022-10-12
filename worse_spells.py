@@ -20,17 +20,17 @@ class WorseSpells():
     WEIGHTS_AND_SUFFIXES = [
         # (15, '_dict'), # dictionary words
         # (50, '_wordlist_nltk2'), # wordlist words
-        (50, '_g10k_nltk'), # wordlist words
-        (100, '_tolkien_nltk'), # wordlist words
+        (25, '_g10k_nltk'), # wordlist words
+        (50, '_tolkien_nltk'), # wordlist words
         # (100, '_35'), # 3.5 spells
         (100, '_35_spells_nltk'), # 3.5 spells
-        (100, '_35_nltk'), # 3.5 spells
+        (50, '_35_nltk'), # 3.5 spells
         # (100, '_pf'), # pathfinder spells
         (100, '_pf_spells_nltk'), # pathfinder spells
-        (100, '_pf_nltk'), # pathfinder spells
+        (50, '_pf_nltk'), # pathfinder spells
         # (100, '_gurps'), # gurps spells
         (100, '_gurps_spells_nltk'), # gurps spells
-        (100, '_gurps_nltk'), # gurps spells
+        (50, '_gurps_nltk'), # gurps spells
         (100, ''), # 5e spells, no suffix for historical reasons
     ]
 
@@ -66,18 +66,12 @@ class WorseSpells():
         self.filenames_and_keywords = [
             (os.path.join(self.FILEPATH, filename), keyword) 
             for filename, keyword in self.filenames_and_keywords]
-
-        # print(self.filenames_and_keywords)
     
     def GenerateFilenamesAndKeywords(self):
         values = [ # hardcode exceptions to name pattern
             ('spell_modifiers.txt', 'modifiers'),
             ('spell_essences.txt', 'essences'),
             ('spell_forms.txt', 'forms'),
-            ('verbs.txt', 'verbs'),
-            ('adjectives.txt', 'adjectives'),
-            ('abstract_nouns.txt', 'abstract_nouns'),
-            ('concrete_nouns.txt', 'concrete_nouns'),
         ]
         suffixes = [a[1] for a in self.WEIGHTS_AND_SUFFIXES]
         for suffix in suffixes:

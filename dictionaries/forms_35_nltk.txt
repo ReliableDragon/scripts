@@ -523,7 +523,6 @@ flipping
 zixalix
 shrieker
 folugub
-pct
 pegasi
 capacity
 word

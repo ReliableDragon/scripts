@@ -3,7 +3,6 @@ storm
 bottom
 participant
 tee
-nhl
 bat
 calendar
 sake
@@ -80,9 +79,7 @@ cotton
 execute
 prevent
 spyware
-gps
 composer
-vhs
 tahoe
 seeker
 walker
@@ -195,7 +192,6 @@ wool
 attack
 barrel
 gaming
-php
 symphony
 sailing
 yarn
@@ -603,7 +599,6 @@ completion
 actress
 lock
 modem
-pct
 reef
 leather
 survival
@@ -633,7 +628,6 @@ keeping
 translator
 urge
 administrator
-mph
 cable
 pick
 cunt
@@ -721,7 +715,6 @@ week
 labour
 passage
 prevention
-dns
 prof
 hook
 negotiation
@@ -804,7 +797,6 @@ wanna
 landscape
 cinema
 acting
-pst
 ranking
 saw
 magnitude
@@ -1006,7 +998,6 @@ spent
 airline
 election
 donation
-src
 expand
 advisor
 throw
@@ -1027,7 +1018,6 @@ rape
 colour
 wrapping
 blood
-mhz
 ampland
 cave
 dairy
@@ -1184,7 +1174,6 @@ son
 terrace
 studio
 horizon
-cms
 access
 inbox
 attempt
@@ -1199,7 +1188,6 @@ shift
 river
 pizza
 sleeve
-pvc
 silk
 trick
 implementation

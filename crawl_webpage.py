@@ -50,21 +50,8 @@ class SiteCrawler():
         self.maxDepth = maxDepth
         self.restrictDomain = restrictDomain
         self.output = set()
-        # self.found_modifiers = set()
-        # self.found_essences = set()
-        # self.found_forms = set()
-        # self.classifier = None
 
-        # self.classes = ['modifier', 'essence', 'form']
         self.nlp = spacy.load("en_core_web_md")
-
-        # modifiers = open(MODIFIERS_FILE, 'r')
-        # essences = open(ESSENCES_FILE, 'r')
-        # forms = open(FORMS_FILE, 'r')
-        # self.training_modifiers = [w.lower() for w in modifiers.read().split('\n')]
-        # self.training_essences = [w.lower() for w in essences.read().split('\n')]
-        # self.training_forms = [w.lower() for w in forms.read().split('\n')]
-        # self.GetClassifier()
 
     def CrawlSite(self):
         print(f'Crawling {self.site} with max depth {self.maxDepth}, and domain restriction set to {self.restrictDomain}.')
@@ -83,12 +70,6 @@ class SiteCrawler():
             link, current_depth = links[0]
             links.pop(0)
             print(f'Processing page {link}.')
-
-            # parsedUrl = urlparse(link)
-            # visitedPages.add(link)
-            # if parsedUrl.hostname != baseHost and self.restrictDomain:
-            #     print('Page is from a different domain, and domain is restricted. Skipping.')
-            #     continue
 
             response = http.request('GET', link)
             soupPage = BeautifulSoup(response.data, "html.parser")
@@ -131,14 +112,6 @@ class SiteCrawler():
 
         with open(os.path.join(DICT_FILEPATH, self.output_file), 'w', encoding='utf-8') as f:
             f.write('\n'.join(self.output))
-        # f.close()
-        # f = open('essences_new', 'w')
-        # f.write('\n'.join(self.found_essences))
-        # f.close()
-        # f = open('forms_new', 'w')
-        # f.write('\n'.join(self.found_forms))
-        # f.close()
-        # crawlPage(site, pageTitle, maxDepth, pages, links, restricted, siteBase)
 
     def ProcessText(self, texts):
         i = 0
@@ -159,32 +132,6 @@ class SiteCrawler():
                 if not text.isalpha():
                     continue
                 self.output.add(f'{text},{pos}')
-                    # word_type = self.classes[self.classifier.predict([token.vector])[0]]
-                    # if word_type == 'modifier':
-                    #     self.found_modifiers.add(token.text)
-                    # if word_type == 'essence':
-                    #     self.found_essences.add(token.text)
-                    # if word_type == 'form':
-                    #     self.found_forms.add(token.text)
-
-    # def GetClassifier(self):
-    #     try:
-    #         with open('pkl_classifier.pkl', 'rb') as file:
-    #             self.classifier = pickle.load(file)
-    #     except:
-    #         print('No classifier found, regenerating.')
-
-    #         train_set = [
-    #             self.training_modifiers,
-    #             self.training_essences,
-    #             self.training_forms,
-    #         ]
-    #         X = np.stack([list(self.nlp(w))[0].vector for part in train_set for w in part])
-    #         y = [label for label, part in enumerate(train_set) for _ in part]
-    #         self.classifier = LogisticRegression(C=0.1, class_weight='balanced').fit(X, y)
-
-    #         with open('pkl_classifier.pkl', 'wb') as file:
-    #             pickle.dump(self.classifier, file)
 
 
 if __name__ == '__main__':

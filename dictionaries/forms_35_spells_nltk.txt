@@ -253,7 +253,6 @@ growth
 residence
 terrain
 complication
-pct
 gain
 scare
 end

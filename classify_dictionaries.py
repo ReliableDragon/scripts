@@ -95,17 +95,6 @@ class DictionaryClassifier():
 
             token_text = self.nlp(word)
             for token in token_text:
-                # if token.pos_ in ['ADJ', 'VERB', 'NOUN']:
-                    # tag = None
-                        # tag = nltk.pos_tag([token.text])[0][1]
-                    # skip_tags = [
-                    #     'NNS', # plural nouns
-                    #     'NNP', # proper nouns
-                    #     'NNPS', # plural proper nouns
-                    #     'VBD', # past tense
-                    #     'VBN', # past participle
-                    #     'VBZ', # third-person singular present verbs
-                    # ]
                     if tag not in VALID_TAGS:
                         continue
 
@@ -119,10 +108,6 @@ class DictionaryClassifier():
                         # formatted_probs = [f'{prob*100:.2f}' for prob in probs]
                         self.output['debug'].add(f'{token.text}: {probs}')
                     else:
-                        # Non-multilabel approach
-                        # for prob, clazz in zip(probs, self.classes):
-                        #     if prob*100 > 25:
-                        #         self.output[clazz].add(token.text)
 
                         # Multilabel approach
                         for prob, clazz in zip(probs, self.classes):

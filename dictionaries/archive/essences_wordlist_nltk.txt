@@ -113,7 +113,6 @@ pork
 italic
 techno
 fort
-gps
 manga
 photo
 annex
@@ -509,7 +508,6 @@ darkness
 radius
 spot
 hurt
-msn
 rom
 trainer
 pregnancy
@@ -550,7 +548,6 @@ anger
 char
 convenience
 slot
-pty
 jungle
 vehicle
 noon
@@ -664,7 +661,6 @@ status
 cry
 feedback
 location
-pdt
 clause
 psychology
 invite
@@ -865,8 +861,6 @@ glance
 tolerance
 indication
 feeling
-gbp
-pct
 bumper
 person
 wind
@@ -907,7 +901,6 @@ document
 enemy
 suspension
 record
-mph
 reflection
 advertising
 climbing
@@ -1103,7 +1096,6 @@ fare
 guy
 flexibility
 development
-dsl
 badge
 visiting
 bidding
@@ -1136,7 +1128,6 @@ architecture
 motivation
 consensus
 acting
-pst
 process
 ranking
 saw
@@ -1310,7 +1301,6 @@ request
 beauty
 bio
 m
-xxx
 tv
 cube
 malpractice
@@ -1443,7 +1433,6 @@ yield
 colour
 explanation
 blood
-mhz
 coming
 relocation
 cave
@@ -1733,7 +1722,6 @@ implementation
 betting
 relevance
 pray
-lbs
 tie
 lightning
 soldier
@@ -1835,7 +1823,6 @@ drove
 apple
 held
 confirmation
-vcr
 reference
 florence
 seeking

@@ -19,7 +19,8 @@ class WorseSpells():
 
     WEIGHTS_AND_SUFFIXES = [
         # (15, '_dict'), # dictionary words
-        (50, '_wordlist_nltk2'), # wordlist words
+        # (50, '_wordlist_nltk2'), # wordlist words
+        (50, '_g10k_nltk'), # wordlist words
         # (100, '_middle_earth_nltk2'), # Tolkien words
         (100, '_tolkien_nltk'), # wordlist words
         # (100, '_35'), # 3.5 spells

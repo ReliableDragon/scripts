@@ -21,7 +21,7 @@ import numpy as np
 VERB_FILE = 'verbs.txt'
 ADJECTIVE_FILE = 'adjectives.txt'
 NOUN_FILE = 'concrete_nouns.txt'
-    
+
 DICT_FILEPATH = os.path.join(os.path.dirname(__file__), 'dictionaries/')
 CLASSIFIER_FILEPATH = os.path.join(os.path.dirname(__file__), 'classifiers/')
 
@@ -29,33 +29,53 @@ MODIFIERS_FILE = os.path.join(DICT_FILEPATH, 'spell_modifiers.txt')
 ESSENCES_FILE = os.path.join(DICT_FILEPATH, 'spell_essences.txt')
 FORMS_FILE = os.path.join(DICT_FILEPATH, 'spell_forms.txt')
 
+VALID_TAGS = [
+    'JJ',
+    'JJR',
+    'JJS',
+    'NN',
+    'VB',
+    'VBG',
+    'VBP',
+]
+
 
 titles = {}
 
-def main(filename_base, files_to_parse, debug=False, predict_probs=False):
-    dictionaryClassifier = DictionaryClassifier(filename_base, debug, predict_probs)
+def main(output_filename_base, files_to_parse, debug=False, predict_probs=False, is_tokenized=False):
+    dictionaryClassifier = DictionaryClassifier(output_filename_base, debug, predict_probs, is_tokenized)
     dictionaryClassifier.ClassifyDictionaries(files_to_parse)
 
 class DictionaryClassifier():
-    def __init__(self, filename_base, debug=False, predict_probs=False):
+    def __init__(self, output_filename_base, debug=False, predict_probs=False, is_tokenized=False):
         self.output = defaultdict(set)
         self.classifier = None
-        self.filename_base = filename_base
+        self.output_filename_base = output_filename_base
         self.debug = debug
         self.predict_probs = predict_probs
+        self.is_tokenized = is_tokenized
 
         self.classes = ['modifiers', 'essences', 'forms']
         self.nlp = spacy.load("en_core_web_md")
 
-        modifiers = open(MODIFIERS_FILE, 'r', encoding='utf-8')
-        essences = open(ESSENCES_FILE, 'r', encoding='utf-8')
-        forms = open(FORMS_FILE, 'r', encoding='utf-8')
-
-        self.training_modifiers = [w.lower() for w in modifiers.read().split('\n')]
-        self.training_essences = [w.lower() for w in essences.read().split('\n')]
-        self.training_forms = [w.lower() for w in forms.read().split('\n')]
-
         self.GetClassifier()
+
+    def GetWordsAndTags(self, text):
+        words_and_tags = set()
+        lines = text.split('\n')
+        for line in lines:
+            if self.is_tokenized:
+                word, tag = line.split(',')
+                word = word.lower()
+            else:
+                word = line.lower()
+                try:
+                    tag = nltk.pos_tag([word])[0][1]
+                except:
+                    raise ValueError(f'Got word that couldn\'t be tagged: {word}.')
+            words_and_tags.add((word, tag))
+
+        return words_and_tags
 
     def ClassifyDictionaries(self, files_to_parse):
         if not files_to_parse:
@@ -64,37 +84,37 @@ class DictionaryClassifier():
         for filename in files_to_parse:
             filename = os.path.join(DICT_FILEPATH, filename)
             with open(filename, 'r', encoding='utf-8') as file:
-                words_to_classify += [w.lower() for w in file.read().split('\n')]
+                words_to_classify = self.GetWordsAndTags(file.read())
+                # words_to_classify += [w.lower() for w in file.read().split('\n')]
         print(f'Processing {len(words_to_classify)} words.')
         i = 0
-        for word in words_to_classify:
+        for word, tag in words_to_classify:
             i += 1
             if i % 1000 == 0:
                 print(f'Processed {i} words.')
 
             token_text = self.nlp(word)
             for token in token_text:
-                if token.pos_ in ['ADJ', 'VERB', 'NOUN']:
-                    tag = None
-                    try:
-                        tag = nltk.pos_tag([token.text])[0][1]
-                        skip_tags = [
-                            'NNS', # plural nouns
-                            'NNP', # proper nouns
-                            'NNPS', # plural proper nouns
-                            'VBD', # past tense
-                            'VBN', # past participle
-                            'VBZ', # third-person singular present verbs
-                        ]
-                        if tag in skip_tags:
-                            continue
-                    except:
-                        raise ValueError(f'Got token that couldn\'t be tagged: {token}.')
+                # if token.pos_ in ['ADJ', 'VERB', 'NOUN']:
+                    # tag = None
+                        # tag = nltk.pos_tag([token.text])[0][1]
+                    # skip_tags = [
+                    #     'NNS', # plural nouns
+                    #     'NNP', # proper nouns
+                    #     'NNPS', # plural proper nouns
+                    #     'VBD', # past tense
+                    #     'VBN', # past participle
+                    #     'VBZ', # third-person singular present verbs
+                    # ]
+                    if tag not in VALID_TAGS:
+                        continue
+
                     # First element, for first sample.
                     if self.predict_probs:
                         probs = self.classifier.predict_proba([token.vector])
                     else:
                         probs = self.classifier.predict([token.vector])
+
                     if self.debug:
                         # formatted_probs = [f'{prob*100:.2f}' for prob in probs]
                         self.output['debug'].add(f'{token.text}: {probs}')
@@ -123,8 +143,9 @@ class DictionaryClassifier():
                             if prob > 0.5:
                                 self.output[clazz].add(text)
 
+        # Write output
         for clazz, words in self.output.items():
-            filename = os.path.join(DICT_FILEPATH, f'{clazz}_{self.filename_base}.txt')
+            filename = os.path.join(DICT_FILEPATH, f'{clazz}_{self.output_filename_base}.txt')
             with open(filename, 'w', encoding='utf-8') as file:
                 file.write('\n'.join(words))
 
@@ -137,14 +158,22 @@ class DictionaryClassifier():
         except:
             print('No classifier found, regenerating.')
 
+            modifiers = open(MODIFIERS_FILE, 'r', encoding='utf-8')
+            essences = open(ESSENCES_FILE, 'r', encoding='utf-8')
+            forms = open(FORMS_FILE, 'r', encoding='utf-8')
+
+            training_modifiers = [w.lower() for w in modifiers.read().split('\n')]
+            training_essences = [w.lower() for w in essences.read().split('\n')]
+            training_forms = [w.lower() for w in forms.read().split('\n')]
+
             train_set = [
-                self.training_modifiers,
-                self.training_essences,
-                self.training_forms,
+                training_modifiers,
+                training_essences,
+                training_forms,
             ]
             X = np.stack([list(self.nlp(w))[0].vector for fragment_list in train_set for w in fragment_list])
             y = [
-                [word in self.training_modifiers, word in self.training_essences, word in self.training_forms] 
+                [word in training_modifiers, word in training_essences, word in training_forms] 
                 for label, fragment_list in enumerate(train_set) for word in fragment_list
                 ]
             # print(y[:10])
@@ -163,10 +192,11 @@ class DictionaryClassifier():
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('--files_to_parse', '-f', dest='files_to_parse', nargs='+', type=str)
-    parser.add_argument('--filename_base', '-fn', dest='filename_base', type=str)
+    parser.add_argument('--output_filename_base', '-o', dest='output_filename_base', type=str)
     parser.add_argument('--debug', dest='debug', type=bool, action=argparse.BooleanOptionalAction, default=False)
     parser.add_argument('--predict_probs', dest='predict_probs', type=bool, action=argparse.BooleanOptionalAction, default=True)
+    parser.add_argument('--is_tokenized', dest='is_tokenized', type=bool, action=argparse.BooleanOptionalAction, default=False)
     args = parser.parse_args()
     print(args.files_to_parse)
-    print(args.filename_base)
-    main(args.filename_base, args.files_to_parse, args.debug, args.predict_probs)
+    print(args.output_filename_base)
+    main(args.output_filename_base, args.files_to_parse, args.debug, args.predict_probs, args.is_tokenized)

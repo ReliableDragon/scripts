@@ -6,29 +6,6 @@ import os
 class WorseSpells():
     
     FILEPATH = os.path.join(os.path.dirname(__file__), 'dictionaries/')
-        # ('spell_modifiers.txt', 'modifiers'),
-        # ('spell_essences.txt', 'essences'),
-        # ('spell_forms.txt', 'forms'),
-        # ('modifiers_35.txt', 'modifiers_35'),
-        # ('essences_35.txt', 'essences_35'),
-        # ('forms_35.txt', 'forms_35'),
-        # ('modifiers_pf.txt', 'modifiers_pf'),
-        # ('essences_pf.txt', 'essences_pf'),
-        # ('forms_pf.txt', 'forms_pf'),
-        # ('modifiers_gurps.txt', 'modifiers_gurps'),
-        # ('essences_gurps.txt', 'essences_gurps'),
-        # ('forms_gurps.txt', 'forms_gurps'),
-        # ('modifiers_wordlist.txt', 'modifiers_wordlist'),
-        # ('essences_wordlist.txt', 'essences_wordlist'),
-        # ('forms_wordlist.txt', 'forms_wordlist'),
-        # ('modifiers_middle_earth.txt', 'modifiers_middle_earth'),
-        # ('essences_middle_earth.txt', 'essences_middle_earth'),
-        # ('forms_middle_earth.txt', 'forms_middle_earth'),
-        # ('modifiers_dict.txt', 'modifiers_dict'),
-        # ('essences_dict.txt', 'essences_dict'),
-        # ('forms_dict.txt', 'forms_dict'),
-
-    # FILENAMES_AND_KEYWORDS = GenerateFilenamesAndKeywords()
 
     WEIGHTS_AND_FORMATS = [
         (400, 'ME'),
@@ -42,11 +19,18 @@ class WorseSpells():
 
     WEIGHTS_AND_SUFFIXES = [
         # (15, '_dict'), # dictionary words
-        (100, '_wordlist_nltk2'), # wordlist words
-        (100, '_middle_earth_nltk2'), # Tolkien words
-        (100, '_35'), # 3.5 spells
-        (100, '_pf'), # pathfinder spells
-        (100, '_gurps'), # gurps spells
+        (50, '_wordlist_nltk2'), # wordlist words
+        # (100, '_middle_earth_nltk2'), # Tolkien words
+        (100, '_tolkien_nltk'), # wordlist words
+        # (100, '_35'), # 3.5 spells
+        (100, '_35_spells_nltk'), # 3.5 spells
+        (100, '_35_nltk'), # 3.5 spells
+        # (100, '_pf'), # pathfinder spells
+        (100, '_pf_spells_nltk'), # pathfinder spells
+        (100, '_pf_nltk'), # pathfinder spells
+        # (100, '_gurps'), # gurps spells
+        (100, '_gurps_spells_nltk'), # gurps spells
+        (100, '_gurps_nltk'), # gurps spells
         (100, ''), # 5e spells, no suffix for historical reasons
     ]
 

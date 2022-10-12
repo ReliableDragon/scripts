@@ -78,8 +78,6 @@ attack
 lucubration
 escape
 pc
-ce
-xp
 throw
 arcane
 contributing
@@ -94,7 +92,6 @@ lieutenant
 cloth
 try
 clay
-le
 goal
 contributor
 killing
@@ -134,7 +131,6 @@ treant
 reveals
 retrieve
 poison
-gp
 wear
 act
 scholar
@@ -212,7 +208,6 @@ cottage
 wilderness
 field
 translating
-lg
 bane
 climb
 binding

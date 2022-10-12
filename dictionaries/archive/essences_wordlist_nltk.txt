@@ -70,11 +70,9 @@ spoke
 character
 concept
 aid
-ro
 deployment
 mattress
 annotation
-mg
 exercise
 notify
 partition
@@ -97,7 +95,6 @@ jazz
 particle
 murder
 visibility
-os
 insertion
 face
 assessment
@@ -140,7 +137,6 @@ shit
 measuring
 game
 drive
-gp
 option
 placing
 authentication
@@ -272,7 +268,6 @@ service
 consumption
 sprint
 uruguay
-hz
 joining
 drug
 exception
@@ -292,7 +287,6 @@ riding
 dim
 depth
 employment
-rc
 runner
 freedom
 guess
@@ -306,7 +300,6 @@ joke
 computer
 extent
 brick
-nc
 loss
 analog
 salary
@@ -380,13 +373,10 @@ student
 yen
 faith
 render
-da
 abortion
 diane
 coordination
 poker
-hd
-dd
 parliament
 ride
 bitch
@@ -474,7 +464,6 @@ affiliation
 inclusion
 test
 killing
-ir
 interference
 relying
 mechanism
@@ -562,7 +551,6 @@ char
 convenience
 slot
 pty
-ga
 jungle
 vehicle
 noon
@@ -616,13 +604,11 @@ birthday
 rank
 evidence
 sensitivity
-av
 establishing
 suit
 unemployment
 implement
 substance
-hq
 polo
 buzz
 question
@@ -636,7 +622,6 @@ antibody
 physiology
 seeing
 granny
-rg
 telling
 carnival
 holocaust
@@ -672,7 +657,6 @@ attachment
 biography
 honey
 dying
-rw
 beam
 going
 remind
@@ -744,7 +728,6 @@ soccer
 introduce
 seed
 quantity
-ve
 scheduling
 endorsement
 occurrence
@@ -761,7 +744,6 @@ relaxation
 duration
 gene
 emphasis
-rh
 litigation
 sword
 caring
@@ -862,9 +844,7 @@ disease
 fought
 mud
 favour
-zu
 learn
-ph
 champion
 nut
 pending
@@ -905,7 +885,6 @@ visa
 geology
 frame
 daisy
-ex
 salvation
 gender
 sale
@@ -1038,7 +1017,6 @@ broadcasting
 suggesting
 blowjob
 negotiation
-fo
 identification
 hair
 adjustment
@@ -1189,12 +1167,9 @@ hash
 assess
 workstation
 hanging
-ai
 dating
 hay
 machine
-rx
-sh
 deviation
 disability
 spring
@@ -1222,7 +1197,6 @@ amendment
 camera
 earning
 talent
-pm
 testing
 jurisdiction
 evaluating
@@ -1265,7 +1239,6 @@ trial
 dressing
 coat
 usd
-ot
 midnight
 propose
 life
@@ -1434,7 +1407,6 @@ s
 version
 necessity
 barbados
-dj
 sand
 description
 jury
@@ -1525,7 +1497,6 @@ correlation
 arena
 unity
 calibration
-sp
 voting
 terminology
 condition
@@ -1602,8 +1573,6 @@ forest
 garmin
 creativity
 spec
-ok
-ls
 forget
 opening
 ruling
@@ -1637,7 +1606,6 @@ chicken
 qualifying
 methodology
 notion
-oo
 constraint
 pit
 loving
@@ -1681,7 +1649,6 @@ expense
 motion
 consideration
 involvement
-mx
 filing
 report
 controversy
@@ -1700,7 +1667,6 @@ landing
 finite
 consent
 basis
-lf
 arrival
 sentence
 side
@@ -1724,7 +1690,6 @@ proc
 widescreen
 nail
 tribute
-rs
 bias
 transaction
 laid

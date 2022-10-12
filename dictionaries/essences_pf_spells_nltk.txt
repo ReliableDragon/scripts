@@ -102,7 +102,6 @@ sanity
 biography
 plant
 creation
-ft
 laughter
 self
 defiance
@@ -222,7 +221,6 @@ outrage
 iron
 pilfering
 armor
-df
 floor
 guidance
 running
@@ -256,7 +254,6 @@ equipment
 warding
 horse
 torch
-dr
 consecrate
 disease
 eagle
@@ -335,7 +332,6 @@ sending
 sentience
 steel
 affliction
-ac
 speech
 radiance
 need
@@ -485,7 +481,6 @@ law
 sleep
 filter
 animating
-mf
 android
 reprobation
 shout
@@ -601,7 +596,6 @@ rune
 shut
 music
 allowing
-cu
 adoration
 force
 shape

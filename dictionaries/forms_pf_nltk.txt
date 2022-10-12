@@ -303,7 +303,6 @@ network
 belittle
 leather
 int
-gp
 damge
 pledging
 efficacy
@@ -670,7 +669,6 @@ blackmail
 blindheim
 hammer
 strap
-oz
 brim
 fray
 wage
@@ -691,7 +689,6 @@ cybertech
 wikkawak
 counterspell
 beams
-yd
 keyhole
 transference
 druidism
@@ -1729,7 +1726,6 @@ tsunami
 forefinger
 magmablade
 magmin
-cl
 shepherd
 entrap
 liberation
@@ -1788,7 +1784,6 @@ girth
 disadvantage
 flea
 seru
-gm
 rake
 tendriculos
 godflesh
@@ -2017,7 +2012,6 @@ bedroom
 mouther
 multiplanar
 rattler
-ai
 tingle
 netting
 experiencing
@@ -3114,7 +3108,6 @@ tracelessness
 setting
 enable
 hypnotist
-pp
 rope
 dip
 harass
@@ -3350,7 +3343,6 @@ iconoclast
 theurge
 nabasu
 stormghost
-ca
 shoreline
 explorer
 inaction

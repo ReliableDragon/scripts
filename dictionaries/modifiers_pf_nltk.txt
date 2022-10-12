@@ -198,7 +198,6 @@ left
 amplified
 ghostly
 consumable
-ii
 spoiled
 outright
 shark of
@@ -427,7 +426,6 @@ erratic
 regenerate
 whirlwind of
 receive
-hp
 brine of
 sleek
 creator of
@@ -1124,7 +1122,6 @@ conquering
 relinquishing
 possess
 orcs of
-pp
 beguiling
 utilizing
 pinned
@@ -1705,7 +1702,6 @@ demagogue
 happen
 consulting
 buy
-sq
 recognizing
 meld
 colony of
@@ -2767,7 +2763,6 @@ production of
 violet
 several
 strengthen
-yd
 recycling
 persistent
 involving
@@ -3301,7 +3296,6 @@ suggestible
 canny
 trustworthy
 snapping
-cr
 inspiring
 names of
 tingle
@@ -4002,7 +3996,6 @@ favorable
 charmed
 favored
 pommel
-vi
 flanking
 leverage of
 triple
@@ -4037,7 +4030,6 @@ appraise
 entwined
 rhetoric of
 clarity of
-ma
 deriding
 squad
 tyrannosaurus of

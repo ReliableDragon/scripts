@@ -120,7 +120,6 @@ effort
 machine
 rapier
 flail
-aq
 broadsword
 spectre
 gate
@@ -134,7 +133,6 @@ stench
 intuition
 require
 direction
-rt
 sociology
 fertility
 friend
@@ -172,7 +170,6 @@ enforcement
 introduction
 arab
 reference
-tr
 divination
 food
 table
@@ -205,13 +202,11 @@ having
 reattachment
 aging
 artillery
-ts
 helping
 choker
 explosion
 tiefling
 baton
-bo
 earthquake
 evidence
 someone
@@ -369,14 +364,12 @@ plant
 lotion
 digester
 animalism
-iw
 obsession
 technique
 viewing
 superstition
 vexation
 fungus
-fp
 rationalization
 flight
 shapeshift
@@ -384,9 +377,7 @@ opening
 cauterization
 conversion
 intelligence
-ds
 invocation
-hr
 eavesdropping
 shillelagh
 preparation
@@ -525,11 +516,9 @@ discussion
 measuring
 illiteracy
 administration
-st
 knocking
 location
 goldsmith
-ms
 slimeball
 countermeasure
 reflection
@@ -546,7 +535,6 @@ method
 position
 conspiracy
 prognostication
-tl
 orc
 virus
 resurrection
@@ -620,7 +608,6 @@ wisdom
 stone
 hag
 burrowing
-jo
 odor
 noise
 illumination
@@ -630,7 +617,6 @@ infection
 trait
 principality
 dependency
-dl
 freedom
 vigor
 fireball
@@ -701,7 +687,6 @@ demonologist
 alternate
 improvisation
 missing
-sp
 lightning
 melee
 process

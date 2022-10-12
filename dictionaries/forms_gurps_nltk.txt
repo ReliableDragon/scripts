@@ -518,7 +518,6 @@ administration
 form
 weewilliewiki
 goldsmith
-ms
 slimeball
 copy
 psientist
@@ -526,7 +525,6 @@ passing
 telescoping
 remember
 mountain
-pp
 tatterdemalion
 umbrella
 eye
@@ -633,7 +631,6 @@ bodak
 army
 sibat
 precognition
-ed
 spotting
 caterwaul
 yabusame
@@ -673,7 +670,6 @@ troglodyte
 jiangshi
 purse
 translator
-ct
 part
 mining
 ultrahearing

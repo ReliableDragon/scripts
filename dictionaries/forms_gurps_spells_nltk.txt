@@ -24,7 +24,6 @@ watchdog
 transfigure
 arduin
 man
-pp
 form
 truthsayer
 dream

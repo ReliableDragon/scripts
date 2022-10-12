@@ -21,7 +21,6 @@ class WorseSpells():
         # (15, '_dict'), # dictionary words
         # (50, '_wordlist_nltk2'), # wordlist words
         (50, '_g10k_nltk'), # wordlist words
-        # (100, '_middle_earth_nltk2'), # Tolkien words
         (100, '_tolkien_nltk'), # wordlist words
         # (100, '_35'), # 3.5 spells
         (100, '_35_spells_nltk'), # 3.5 spells
@@ -200,7 +199,7 @@ class WorseSpells():
     * modifier + essence noun + form noun: Absorb Stone Bolt
     '''
     def GenerateSpellFormat(self):
-        recombine_nouns = True
+        recombine_nouns = False
         recombination_probability = 0.05
         weights_and_formats = self.WEIGHTS_AND_FORMATS
 

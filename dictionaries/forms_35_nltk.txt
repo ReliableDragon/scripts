@@ -125,11 +125,9 @@ sandstone
 warfare
 http
 hypercognition
-da
 extension
 wolverine
 windstorm
-ca
 sword
 thorp
 cape
@@ -467,7 +465,6 @@ effect
 conjurer
 summon
 rock
-le
 cloaker
 ghast
 goal
@@ -496,7 +493,6 @@ viper
 gore
 aporter
 emanation
-lg
 sprite
 androsphinx
 opposition
@@ -556,7 +552,6 @@ core
 grant
 robe
 agent
-ce
 shapechanger
 weaponbreaking
 dreamscape
@@ -610,7 +605,6 @@ carthagu
 azer
 psionatrix
 mood
-gp
 username
 worg
 burrow
@@ -672,7 +666,6 @@ hellball
 misrepresentation
 period
 livingstone
-en
 spyglass
 verthex
 revenue

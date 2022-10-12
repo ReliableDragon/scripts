@@ -26,6 +26,24 @@ class WorseSpells():
         ('concrete_nouns.txt', 'concrete_nouns'),
     ]
 
+    WEIGHTS_AND_FORMATS = [
+        (400, 'ME'),
+        (400, 'EF'),
+        (150, 'MF'),
+        (25, 'MEF'),
+        (14, 'E'),
+        (5, 'MEE'),
+        (5, 'EEF'),
+    ]
+
+    WEIGHTS_AND_SUFFIXES = [
+        (15, '_dict'), # dictionary words
+        (35, '_35'), # 3.5 spells
+        (35, '_pf'), # pathfinder spells
+        (35, '_gurps'), # gurps spells
+        (35, ''), # 5e spells, no suffix for historical reasons
+    ]
+
     FORMAT_MAP = {'M': 'modifiers', 'E': 'essences', 'F': 'forms'}
 
     def __init__(self, spell_format, filter):
@@ -114,13 +132,7 @@ class WorseSpells():
         return buckets
 
     def GetRandomSpellListOfType(self, base_type, filtered=False):
-        weights_and_suffixes = [
-            (15, '_dict'), # dictionary words
-            (35, '_35'), # 3.5 spells
-            (35, '_pf'), # pathfinder spells
-            (35, '_gurps'), # gurps spells
-            (35, ''), # 5e spells, no suffix for historical reasons
-        ]
+        weights_and_suffixes = self.WEIGHTS_AND_SUFFIXES
 
         if filtered:
             # Filter out all suffixes corresponding to lists that have no values after filtering.
@@ -150,15 +162,7 @@ class WorseSpells():
     def GenerateSpellFormat(self):
         recombine_nouns = True
         recombination_probability = 0.05
-        weights_and_formats = [
-            (400, 'ME'),
-            (400, 'EF'),
-            (150, 'MF'),
-            (25, 'MEF'),
-            (14, 'E'),
-            (5, 'MEE'),
-            (5, 'EEF'),
-        ]
+        weights_and_formats = self.WEIGHTS_AND_FORMATS
 
         # Filter out formats that don't include at least one valid part if there's a filter.
         if self.spell_format:

@@ -1,5 +1,6 @@
 # import httplib2
 import argparse
+from collections import defaultdict
 import urllib3
 from bs4 import BeautifulSoup, SoupStrainer, Comment
 import os
@@ -24,65 +25,56 @@ NOUN_FILE = 'concrete_nouns.txt'
 
 titles = {}
 
-def main():
-    dictionaryClassifier = DictionaryClassifier()
-    dictionaryClassifier.ClassifyDictionaries()
+def main(filename_base, files_to_parse):
+    dictionaryClassifier = DictionaryClassifier(filename_base)
+    dictionaryClassifier.ClassifyDictionaries(files_to_parse)
 
 class DictionaryClassifier():
-    def __init__(self):
-        self.found_modifiers = set()
-        self.found_essences = set()
-        self.found_forms = set()
+    def __init__(self, filename_base):
+        self.output = defaultdict(set)
         self.classifier = None
+        self.filename_base = filename_base
 
-        self.classes = ['modifier', 'essence', 'form']
+        self.classes = ['modifiers', 'essences', 'forms']
         self.nlp = spacy.load("en_core_web_md")
 
         modifiers = open(MODIFIERS_FILE, 'r')
         essences = open(ESSENCES_FILE, 'r')
         forms = open(FORMS_FILE, 'r')
-        verbs = open(ADJECTIVE_FILE, 'r')
-        adjectives = open(VERB_FILE, 'r')
-        nouns = open(NOUN_FILE, 'r')
 
         self.training_modifiers = [w.lower() for w in modifiers.read().split('\n')]
         self.training_essences = [w.lower() for w in essences.read().split('\n')]
         self.training_forms = [w.lower() for w in forms.read().split('\n')]
-        self.verbs = [w.title() for w in verbs.read().split('\n')]
-        self.adjectives = [w.title() for w in adjectives.read().split('\n')]
-        self.nouns = [w.title() for w in nouns.read().split('\n')]
 
         self.GetClassifier()
 
-    def ClassifyDictionaries(self):
-        dictionaries = self.verbs + self.adjectives + self.nouns
-        print(f'Processing {len(dictionaries)} words.')
+    def ClassifyDictionaries(self, files_to_parse):
+        if not files_to_parse:
+            raise ValueError(f'Didn\'t get any files to parse!')
+        for filename in files_to_parse:
+            with open(filename, 'r') as file:
+                file = open(filename, 'r')
+                words_to_classify = [w.lower() for w in file.read().split('\n')]
+            print(f'Processing {len(words_to_classify)} words.')
         i = 0
-        for text in dictionaries:
+        for word in words_to_classify:
             i += 1
             if i % 1000 == 0:
                 print(f'Processed {i} words.')
-            # tag_pairs = nltk.pos_tag(nltk.word_tokenize(text))
-            token_text = self.nlp(text)
+
+            token_text = self.nlp(word)
             for token in token_text:
                 if token.pos_ in ['ADJ', 'VERB', 'NOUN']:
-                    word_type = self.classes[self.classifier.predict([token.vector])[0]]
-                    if word_type == 'modifier':
-                        self.found_modifiers.add(token.text)
-                    if word_type == 'essence':
-                        self.found_essences.add(token.text)
-                    if word_type == 'form':
-                        self.found_forms.add(token.text)
+                    probs = self.classifier.predict_proba([token.vector])[0] # First element, for first sample.
+                    # formatted_probs = [f'{prob*10:.2f}' for prob in probs]
+                    for prob, clazz in zip(probs, self.classes):
+                        if prob > 0.05:
+                            self.output[clazz].add(token.text)
+                    # self.output.add(f'{token.text}: {formatted_probs}')
 
-        f = open('new_modifiers', 'w')
-        f.write('\n'.join(self.found_modifiers))
-        f.close()
-        f = open('new_essences', 'w')
-        f.write('\n'.join(self.found_essences))
-        f.close()
-        f = open('new_forms', 'w')
-        f.write('\n'.join(self.found_forms))
-        f.close()
+        for clazz, words in self.output.items():
+            with open(f'{self.filename_base}_{clazz}.txt', 'w') as file:
+                file.write('\n'.join(words))
 
     def GetClassifier(self):
         try:
@@ -105,4 +97,10 @@ class DictionaryClassifier():
 
 
 if __name__ == '__main__':
-    main()
+    parser = argparse.ArgumentParser(description='Process some integers.')
+    parser.add_argument('--files_to_parse', '-f', dest='files_to_parse', nargs='+', type=str)
+    parser.add_argument('--filename_base', '-fn', dest='filename_base', nargs=1, type=str)
+    args = parser.parse_args()
+    print(args.files_to_parse)
+    print(args.filename_base)
+    exit()

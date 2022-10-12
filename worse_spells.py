@@ -1,8 +1,11 @@
 import argparse
 import random
 import re
+import os
 
 class WorseSpells():
+    
+    FILEPATH = os.path.join(os.path.dirname(__file__), 'dictionaries/')
 
     FILENAMES_AND_KEYWORDS = [
         ('spell_modifiers.txt', 'modifiers'),
@@ -46,20 +49,38 @@ class WorseSpells():
 
     FORMAT_MAP = {'M': 'modifiers', 'E': 'essences', 'F': 'forms'}
 
-    def __init__(self, spell_format, filter):
+    def __init__(self, spell_format=None, filter=None, filebase_override=None):
         self.spell_format = spell_format
         self.filter = filter
         self.word_sources = {}
+        self.filebase_override = filebase_override
+        self.filenames_and_keywords = self.FILENAMES_AND_KEYWORDS 
+        self.weights_and_suffixes = self.WEIGHTS_AND_SUFFIXES
 
-    def GenerateSpells(self, n=1):
-        self.ImportSpellKeywords()
+        if self.filebase_override:
+            print(f'Restricting search to {filebase_override}.')
+            self.filenames_and_keywords = [
+                (f'{filebase_override}_modifiers.txt', 'modifiers'),
+                (f'{filebase_override}_essences.txt', 'essences'),
+                (f'{filebase_override}_forms.txt', 'forms'),
+            ]
+            self.weights_and_suffixes = [(1, '')]
+
+        self.filenames_and_keywords = [
+            (os.path.join(self.FILEPATH, filename), keyword) 
+            for filename, keyword in self.filenames_and_keywords]
+
+        # print(self.filenames_and_keywords)
+
+    def GenerateSpells(self, n=1, filebase_override=None):
+        self.ImportSpellKeywords(filebase_override)
         results = []
         for _ in range(n):
             results.append(self.GenerateSpell())
         return results
 
-    def ImportSpellKeywords(self):
-        for filename, keyword in self.FILENAMES_AND_KEYWORDS:
+    def ImportSpellKeywords(self, filebase_override=None):
+        for filename, keyword in self.filenames_and_keywords:
             with open(filename, 'r') as file:
                 self.word_sources[keyword] = [w.title() for w in file.read().split('\n')]
                 if self.filter:
@@ -132,7 +153,7 @@ class WorseSpells():
         return buckets
 
     def GetRandomSpellListOfType(self, base_type, filtered=False):
-        weights_and_suffixes = self.WEIGHTS_AND_SUFFIXES
+        weights_and_suffixes = self.weights_and_suffixes
 
         if filtered:
             # Filter out all suffixes corresponding to lists that have no values after filtering.
@@ -211,9 +232,10 @@ def main():
     parser.add_argument('--num_spells', '-n', dest='num_spells', nargs='?', type=int, default=1)
     parser.add_argument('--spell_format', '-sf', dest='spell_format', nargs='?', type=str, default=None)
     parser.add_argument('--filter', '-f', dest='filter', nargs='?', type=str, default=None)
+    parser.add_argument('--filebase_override', '-o', dest='filebase_override', type=str, default=None)
     args = parser.parse_args()
     print(f'Generating {args.num_spells} spell(s):')
-    spell_generator = WorseSpells(args.spell_format, args.filter)
+    spell_generator = WorseSpells(args.spell_format, args.filter, args.filebase_override)
     spells = spell_generator.GenerateSpells(args.num_spells)
     for spell in spells:
         print(spell)

@@ -14,26 +14,34 @@ import pickle
 
 import spacy
 from sklearn.linear_model import LogisticRegression
+from sklearn.multiclass import OneVsRestClassifier
+from sklearn.multioutput import MultiOutputClassifier
 import numpy as np
 
-MODIFIERS_FILE = 'spell_modifiers.txt'
-ESSENCES_FILE = 'spell_essences.txt'
-FORMS_FILE = 'spell_forms.txt'
 VERB_FILE = 'verbs.txt'
 ADJECTIVE_FILE = 'adjectives.txt'
 NOUN_FILE = 'concrete_nouns.txt'
+    
+DICT_FILEPATH = os.path.join(os.path.dirname(__file__), 'dictionaries/')
+CLASSIFIER_FILEPATH = os.path.join(os.path.dirname(__file__), 'classifiers/')
+
+MODIFIERS_FILE = os.path.join(DICT_FILEPATH, 'spell_modifiers.txt')
+ESSENCES_FILE = os.path.join(DICT_FILEPATH, 'spell_essences.txt')
+FORMS_FILE = os.path.join(DICT_FILEPATH, 'spell_forms.txt')
 
 titles = {}
 
-def main(filename_base, files_to_parse):
-    dictionaryClassifier = DictionaryClassifier(filename_base)
+def main(filename_base, files_to_parse, debug=False, predict_probs=False):
+    dictionaryClassifier = DictionaryClassifier(filename_base, debug, predict_probs)
     dictionaryClassifier.ClassifyDictionaries(files_to_parse)
 
 class DictionaryClassifier():
-    def __init__(self, filename_base):
+    def __init__(self, filename_base, debug=False, predict_probs=False):
         self.output = defaultdict(set)
         self.classifier = None
         self.filename_base = filename_base
+        self.debug = debug
+        self.predict_probs = predict_probs
 
         self.classes = ['modifiers', 'essences', 'forms']
         self.nlp = spacy.load("en_core_web_md")
@@ -51,11 +59,13 @@ class DictionaryClassifier():
     def ClassifyDictionaries(self, files_to_parse):
         if not files_to_parse:
             raise ValueError(f'Didn\'t get any files to parse!')
+        words_to_classify = []
         for filename in files_to_parse:
+            filename = os.path.join(DICT_FILEPATH, filename)
             with open(filename, 'r') as file:
                 file = open(filename, 'r')
-                words_to_classify = [w.lower() for w in file.read().split('\n')]
-            print(f'Processing {len(words_to_classify)} words.')
+                words_to_classify += [w.lower() for w in file.read().split('\n')]
+        print(f'Processing {len(words_to_classify)} words.')
         i = 0
         for word in words_to_classify:
             i += 1
@@ -65,21 +75,39 @@ class DictionaryClassifier():
             token_text = self.nlp(word)
             for token in token_text:
                 if token.pos_ in ['ADJ', 'VERB', 'NOUN']:
-                    probs = self.classifier.predict_proba([token.vector])[0] # First element, for first sample.
-                    # formatted_probs = [f'{prob*10:.2f}' for prob in probs]
-                    for prob, clazz in zip(probs, self.classes):
-                        if prob > 0.05:
-                            self.output[clazz].add(token.text)
-                    # self.output.add(f'{token.text}: {formatted_probs}')
+                    # First element, for first sample.
+                    if self.predict_probs:
+                        probs = self.classifier.predict_proba([token.vector])
+                    else:
+                        probs = self.classifier.predict([token.vector])
+                    if self.debug:
+                        # formatted_probs = [f'{prob*100:.2f}' for prob in probs]
+                        self.output['debug'].add(f'{token.text}: {probs}')
+                    else:
+                        # Non-multilabel approach
+                        # for prob, clazz in zip(probs, self.classes):
+                        #     if prob*100 > 25:
+                        #         self.output[clazz].add(token.text)
+
+                        # Multilabel approach
+                        for prob, clazz in zip(probs, self.classes):
+                            if self.predict_probs:
+                                prob = prob[0] # Unnest array
+                                _, prob = prob # Use true prob, discard false prob
+                            if prob > 0.25:
+                                self.output[clazz].add(token.text)
 
         for clazz, words in self.output.items():
-            with open(f'{self.filename_base}_{clazz}.txt', 'w') as file:
+            filename = os.path.join(DICT_FILEPATH, f'{self.filename_base}_{clazz}.txt')
+            with open(filename, 'w') as file:
                 file.write('\n'.join(words))
 
     def GetClassifier(self):
+        filename = os.path.join(CLASSIFIER_FILEPATH, 'pkl_classifier_multioutputclassifier.pkl')
         try:
-            with open('pkl_classifier.pkl', 'rb') as file:
+            with open(filename, 'rb') as file:
                 self.classifier = pickle.load(file)
+                # print(f'Is Multilabel: {self.classifier.multilabel_}')
         except:
             print('No classifier found, regenerating.')
 
@@ -88,19 +116,31 @@ class DictionaryClassifier():
                 self.training_essences,
                 self.training_forms,
             ]
-            X = np.stack([list(self.nlp(w))[0].vector for part in train_set for w in part])
-            y = [label for label, part in enumerate(train_set) for _ in part]
-            self.classifier = LogisticRegression(C=0.1, class_weight='balanced').fit(X, y)
+            X = np.stack([list(self.nlp(w))[0].vector for fragment_list in train_set for w in fragment_list])
+            y = [
+                [word in self.training_modifiers, word in self.training_essences, word in self.training_forms] 
+                for label, fragment_list in enumerate(train_set) for word in fragment_list
+                ]
+            # print(y[:10])
+            # exit()
+            logistic_regression = LogisticRegression(
+                C=0.1, class_weight='balanced', max_iter=1000, multi_class='ovr')
+            logistic_regression = MultiOutputClassifier(logistic_regression)
+            logistic_regression = logistic_regression.fit(X, y)
+            self.classifier = logistic_regression
+            # print(f'Is Multilabel: {self.classifier.multilabel_}')
 
-            with open('pkl_classifier.pkl', 'wb') as file:
+            with open(filename, 'wb') as file:
                 pickle.dump(self.classifier, file)
 
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description='Process some integers.')
     parser.add_argument('--files_to_parse', '-f', dest='files_to_parse', nargs='+', type=str)
-    parser.add_argument('--filename_base', '-fn', dest='filename_base', nargs=1, type=str)
+    parser.add_argument('--filename_base', '-fn', dest='filename_base', type=str)
+    parser.add_argument('--debug', dest='debug', type=bool, action=argparse.BooleanOptionalAction, default=False)
+    parser.add_argument('--predict_probs', dest='predict_probs', type=bool, action=argparse.BooleanOptionalAction, default=True)
     args = parser.parse_args()
     print(args.files_to_parse)
     print(args.filename_base)
-    exit()
+    main(args.filename_base, args.files_to_parse, args.debug, args.predict_probs)

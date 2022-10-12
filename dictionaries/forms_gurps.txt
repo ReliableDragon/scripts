@@ -62,7 +62,7 @@ Stallion
 opposed
 Rejoin
 Silence
-Tr�to
+TrÃƒÂ­to
 members
 Symbol
 Penetrating
@@ -183,7 +183,7 @@ cer-145
 Season
 Rain
 Cold
-T�tarto
+TÃƒÂ©tarto
 Timeport
 Viewing
 rights

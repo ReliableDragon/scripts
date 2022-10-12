@@ -1,9 +1,11 @@
 import argparse
 import random
+import os
 
-MODIFIERS_FILE = 'spell_modifiers.txt'
-ESSENCES_FILE = 'spell_essences.txt'
-FORMS_FILE = 'spell_forms.txt'
+FILEPATH = os.path.join(os.path.dirname(__file__), 'dictionaries/')
+MODIFIERS_FILE = os.path.join(FILEPATH, 'spell_modifiers.txt')
+ESSENCES_FILE = os.path.join(FILEPATH, 'spell_essences.txt')
+FORMS_FILE = os.path.join(FILEPATH, 'spell_forms.txt')
 
 def ImportSpellKeywords(filebase_override=None):
     values = {}

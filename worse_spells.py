@@ -6,28 +6,29 @@ import os
 class WorseSpells():
     
     FILEPATH = os.path.join(os.path.dirname(__file__), 'dictionaries/')
+        # ('spell_modifiers.txt', 'modifiers'),
+        # ('spell_essences.txt', 'essences'),
+        # ('spell_forms.txt', 'forms'),
+        # ('modifiers_35.txt', 'modifiers_35'),
+        # ('essences_35.txt', 'essences_35'),
+        # ('forms_35.txt', 'forms_35'),
+        # ('modifiers_pf.txt', 'modifiers_pf'),
+        # ('essences_pf.txt', 'essences_pf'),
+        # ('forms_pf.txt', 'forms_pf'),
+        # ('modifiers_gurps.txt', 'modifiers_gurps'),
+        # ('essences_gurps.txt', 'essences_gurps'),
+        # ('forms_gurps.txt', 'forms_gurps'),
+        # ('modifiers_wordlist.txt', 'modifiers_wordlist'),
+        # ('essences_wordlist.txt', 'essences_wordlist'),
+        # ('forms_wordlist.txt', 'forms_wordlist'),
+        # ('modifiers_middle_earth.txt', 'modifiers_middle_earth'),
+        # ('essences_middle_earth.txt', 'essences_middle_earth'),
+        # ('forms_middle_earth.txt', 'forms_middle_earth'),
+        # ('modifiers_dict.txt', 'modifiers_dict'),
+        # ('essences_dict.txt', 'essences_dict'),
+        # ('forms_dict.txt', 'forms_dict'),
 
-    FILENAMES_AND_KEYWORDS = [
-        ('spell_modifiers.txt', 'modifiers'),
-        ('spell_essences.txt', 'essences'),
-        ('spell_forms.txt', 'forms'),
-        ('modifiers_35.txt', 'essences_35'),
-        ('essences_35.txt', 'modifiers_35'),
-        ('forms_35.txt', 'forms_35'),
-        ('modifiers_pf.txt', 'modifiers_pf'),
-        ('essences_pf.txt', 'essences_pf'),
-        ('forms_pf.txt', 'forms_pf'),
-        ('modifiers_gurps.txt', 'modifiers_gurps'),
-        ('essences_gurps.txt', 'essences_gurps'),
-        ('forms_gurps.txt', 'forms_gurps'),
-        ('modifiers_dict.txt', 'modifiers_dict'),
-        ('essences_dict.txt', 'essences_dict'),
-        ('forms_dict.txt', 'forms_dict'),
-        ('verbs.txt', 'verbs'),
-        ('adjectives.txt', 'adjectives'),
-        ('abstract_nouns.txt', 'abstract_nouns'),
-        ('concrete_nouns.txt', 'concrete_nouns'),
-    ]
+    # FILENAMES_AND_KEYWORDS = GenerateFilenamesAndKeywords()
 
     WEIGHTS_AND_FORMATS = [
         (400, 'ME'),
@@ -40,11 +41,23 @@ class WorseSpells():
     ]
 
     WEIGHTS_AND_SUFFIXES = [
-        (15, '_dict'), # dictionary words
-        (35, '_35'), # 3.5 spells
-        (35, '_pf'), # pathfinder spells
-        (35, '_gurps'), # gurps spells
-        (35, ''), # 5e spells, no suffix for historical reasons
+        # (15, '_dict'), # dictionary words
+        (100, '_wordlist_nltk2'), # wordlist words
+        (100, '_middle_earth_nltk2'), # Tolkien words
+        (100, '_35'), # 3.5 spells
+        (100, '_pf'), # pathfinder spells
+        (100, '_gurps'), # gurps spells
+        (100, ''), # 5e spells, no suffix for historical reasons
+    ]
+
+    FILE_SUFFIXES = [
+        '35',
+        'pf',
+        'gurps',
+        'wordlist',
+        'middle_earth',
+        'dict',
+        'wordlist_nltk2',
     ]
 
     FORMAT_MAP = {'M': 'modifiers', 'E': 'essences', 'F': 'forms'}
@@ -54,15 +67,15 @@ class WorseSpells():
         self.filter = filter
         self.word_sources = {}
         self.filebase_override = filebase_override
-        self.filenames_and_keywords = self.FILENAMES_AND_KEYWORDS 
+        self.filenames_and_keywords = self.GenerateFilenamesAndKeywords() 
         self.weights_and_suffixes = self.WEIGHTS_AND_SUFFIXES
 
         if self.filebase_override:
             print(f'Restricting search to {filebase_override}.')
             self.filenames_and_keywords = [
-                (f'{filebase_override}_modifiers.txt', 'modifiers'),
-                (f'{filebase_override}_essences.txt', 'essences'),
-                (f'{filebase_override}_forms.txt', 'forms'),
+                (f'modifiers_{filebase_override}.txt', 'modifiers'),
+                (f'essences_{filebase_override}.txt', 'essences'),
+                (f'forms_{filebase_override}.txt', 'forms'),
             ]
             self.weights_and_suffixes = [(1, '')]
 
@@ -71,6 +84,27 @@ class WorseSpells():
             for filename, keyword in self.filenames_and_keywords]
 
         # print(self.filenames_and_keywords)
+    
+    def GenerateFilenamesAndKeywords(self):
+        values = [ # hardcode exceptions to name pattern
+            ('spell_modifiers.txt', 'modifiers'),
+            ('spell_essences.txt', 'essences'),
+            ('spell_forms.txt', 'forms'),
+            ('verbs.txt', 'verbs'),
+            ('adjectives.txt', 'adjectives'),
+            ('abstract_nouns.txt', 'abstract_nouns'),
+            ('concrete_nouns.txt', 'concrete_nouns'),
+        ]
+        suffixes = [a[1] for a in self.WEIGHTS_AND_SUFFIXES]
+        for suffix in suffixes:
+            if not suffix:
+                # skip ''. I really should just refactor that one to match the format.
+                continue 
+            values.append((f'modifiers{suffix}.txt', f'modifiers{suffix}'))
+            values.append((f'essences{suffix}.txt', f'essences{suffix}'))
+            values.append((f'forms{suffix}.txt', f'forms{suffix}'))
+
+        return values
 
     def GenerateSpells(self, n=1, filebase_override=None):
         self.ImportSpellKeywords(filebase_override)
@@ -81,7 +115,7 @@ class WorseSpells():
 
     def ImportSpellKeywords(self, filebase_override=None):
         for filename, keyword in self.filenames_and_keywords:
-            with open(filename, 'r') as file:
+            with open(filename, 'r', encoding='utf-8') as file:
                 self.word_sources[keyword] = [w.title() for w in file.read().split('\n')]
                 if self.filter:
                     filtered = list(filter(lambda a: re.search(self.filter, a, re.I), self.word_sources[keyword]))

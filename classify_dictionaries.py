@@ -29,6 +29,7 @@ MODIFIERS_FILE = os.path.join(DICT_FILEPATH, 'spell_modifiers.txt')
 ESSENCES_FILE = os.path.join(DICT_FILEPATH, 'spell_essences.txt')
 FORMS_FILE = os.path.join(DICT_FILEPATH, 'spell_forms.txt')
 
+
 titles = {}
 
 def main(filename_base, files_to_parse, debug=False, predict_probs=False):
@@ -46,9 +47,9 @@ class DictionaryClassifier():
         self.classes = ['modifiers', 'essences', 'forms']
         self.nlp = spacy.load("en_core_web_md")
 
-        modifiers = open(MODIFIERS_FILE, 'r')
-        essences = open(ESSENCES_FILE, 'r')
-        forms = open(FORMS_FILE, 'r')
+        modifiers = open(MODIFIERS_FILE, 'r', encoding='utf-8')
+        essences = open(ESSENCES_FILE, 'r', encoding='utf-8')
+        forms = open(FORMS_FILE, 'r', encoding='utf-8')
 
         self.training_modifiers = [w.lower() for w in modifiers.read().split('\n')]
         self.training_essences = [w.lower() for w in essences.read().split('\n')]
@@ -62,8 +63,7 @@ class DictionaryClassifier():
         words_to_classify = []
         for filename in files_to_parse:
             filename = os.path.join(DICT_FILEPATH, filename)
-            with open(filename, 'r') as file:
-                file = open(filename, 'r')
+            with open(filename, 'r', encoding='utf-8') as file:
                 words_to_classify += [w.lower() for w in file.read().split('\n')]
         print(f'Processing {len(words_to_classify)} words.')
         i = 0
@@ -75,6 +75,21 @@ class DictionaryClassifier():
             token_text = self.nlp(word)
             for token in token_text:
                 if token.pos_ in ['ADJ', 'VERB', 'NOUN']:
+                    tag = None
+                    try:
+                        tag = nltk.pos_tag([token.text])[0][1]
+                        skip_tags = [
+                            'NNS', # plural nouns
+                            'NNP', # proper nouns
+                            'NNPS', # plural proper nouns
+                            'VBD', # past tense
+                            'VBN', # past participle
+                            'VBZ', # third-person singular present verbs
+                        ]
+                        if tag in skip_tags:
+                            continue
+                    except:
+                        raise ValueError(f'Got token that couldn\'t be tagged: {token}.')
                     # First element, for first sample.
                     if self.predict_probs:
                         probs = self.classifier.predict_proba([token.vector])
@@ -91,15 +106,26 @@ class DictionaryClassifier():
 
                         # Multilabel approach
                         for prob, clazz in zip(probs, self.classes):
+                            text = token.text
+                            if tag:
+                                if clazz == 'modifiers':
+                                    if token.pos_ == 'NOUN':
+                                        text += ' of'
+                                if clazz == 'essences':
+                                    if tag in ['JJ', 'JJR', 'JJS', 'VB', 'VBP'] or token.pos_ == 'ADJ':
+                                        continue # essences should not be adjectives or non-gerund verbs
+                                if clazz == 'forms':
+                                    if tag in ['JJ', 'JJR', 'JJS'] or token.pos_ == 'ADJ':
+                                        continue # forms should not be adjectives
                             if self.predict_probs:
                                 prob = prob[0] # Unnest array
                                 _, prob = prob # Use true prob, discard false prob
-                            if prob > 0.25:
-                                self.output[clazz].add(token.text)
+                            if prob > 0.5:
+                                self.output[clazz].add(text)
 
         for clazz, words in self.output.items():
-            filename = os.path.join(DICT_FILEPATH, f'{self.filename_base}_{clazz}.txt')
-            with open(filename, 'w') as file:
+            filename = os.path.join(DICT_FILEPATH, f'{clazz}_{self.filename_base}.txt')
+            with open(filename, 'w', encoding='utf-8') as file:
                 file.write('\n'.join(words))
 
     def GetClassifier(self):

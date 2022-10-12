@@ -24,7 +24,6 @@ projection
 code
 laughter
 opponent
-q
 resurrection
 scout
 mix
@@ -53,7 +52,6 @@ speeding
 weaponsmith
 ability
 limit
-cr
 misdirection
 enchantment
 heal
@@ -76,8 +74,6 @@ maze
 food
 index
 need
-pc
-xp
 arcane
 riding
 animal
@@ -156,7 +152,6 @@ talk
 identifying
 chance
 repulsion
-gp
 earth
 drowning
 max
@@ -174,7 +169,6 @@ round
 deity
 having
 reference
-ng
 dream
 changing
 beauty
@@ -196,7 +190,6 @@ evocation
 shut
 modification
 magic
-tm
 bracket
 respect
 mist
@@ -221,7 +214,6 @@ power
 design
 abjuration
 div
-ln
 childhood
 condition
 statue
@@ -249,14 +241,11 @@ rating
 copyright
 version
 plot
-m
 deathtrap
-sr
 preview
 violation
 atonement
 field
-lg
 brawl
 calculator
 game
@@ -271,7 +260,6 @@ imprisonment
 firefox
 acceptance
 exhaustion
-t
 sleep
 police
 climate
@@ -283,15 +271,12 @@ phantasm
 sympathy
 armor
 information
-ne
-s
 levitate
 hedge
 identity
 melee
 labyrinth
 shaft
-cg
 conversation
 interest
 disk
@@ -305,7 +290,6 @@ horse
 lightning
 honor
 approach
-sq
 invulnerability
 presentation
 eagle
@@ -339,9 +323,7 @@ rolling
 accumulation
 screen
 dying
-ft
 situation
-n
 hope
 correction
 emotion
@@ -431,13 +413,11 @@ duration
 rescuing
 message
 none
-cu
 weapon
 guardsman
 trace
 enhancement
 intention
-cn
 legend
 haste
 endurance

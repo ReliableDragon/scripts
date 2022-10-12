@@ -1,7 +1,6 @@
 copyright
 honor
 acid
-u
 sending
 proximity
 depending
@@ -14,9 +13,7 @@ force
 ice
 army
 name
-m
 fungus
-sh
 awakening
 seed
 memory
@@ -45,7 +42,6 @@ half
 divination
 brawler
 empathy
-ne
 blink
 communication
 daughter
@@ -88,11 +84,9 @@ earning
 code
 asking
 necromancer
-f
 evocation
 consent
 bond
-r
 eating
 seeing
 lycanthrope
@@ -126,7 +120,6 @@ fission
 friend
 enchanter
 chimera
-tm
 cauchemar
 version
 apotheosis
@@ -138,14 +131,12 @@ field
 coat
 scything
 sphinx
-v
 weapon
 interrupting
 sandstone
 endurance
 deceleration
 attn
-da
 therapy
 herein
 extension
@@ -153,7 +144,6 @@ wolverine
 message
 determining
 timing
-ca
 schizophrenia
 sword
 taint
@@ -201,7 +191,6 @@ inspiration
 die
 king
 lifting
-ln
 screen
 smashing
 computer
@@ -240,12 +229,9 @@ inaction
 stance
 dance
 psychokinesis
-g
 crowbar
 lion
-ma
 recharging
-ac
 race
 labyrinth
 addiction
@@ -283,9 +269,7 @@ development
 manner
 barrage
 permission
-pc
 being
-xp
 virtue
 nature
 spot
@@ -333,7 +317,6 @@ freedom
 manipulation
 hiding
 pixie
-j
 trait
 terrain
 poison
@@ -346,7 +329,6 @@ blight
 treasure
 trance
 scythe
-d
 abode
 penalty
 supplement
@@ -364,7 +346,6 @@ cross
 giving
 archery
 pony
-s
 dodge
 date
 circumstance
@@ -374,7 +355,6 @@ beast
 rank
 alteration
 government
-l
 gleaming
 horse
 rope
@@ -393,11 +373,9 @@ mansion
 substance
 modification
 nothing
-c
 value
 firefox
 concussion
-cg
 scaling
 scrying
 withering
@@ -429,13 +407,11 @@ levitate
 desc
 obsession
 question
-pr
 weakness
 dimension
 syndication
 support
 price
-n
 gold
 sanity
 nobility
@@ -461,7 +437,6 @@ option
 artifact
 correspond
 devourer
-z
 facebook
 object
 rapier
@@ -531,7 +506,6 @@ defiance
 art
 asylum
 pass
-si
 shooting
 concealment
 road
@@ -552,18 +526,14 @@ anxiety
 culture
 ghast
 identifying
-sq
 invulnerability
 goal
 money
-b
 scent
 undying
 getting
-t
 prospect
 requesting
-cr
 fist
 maneuver
 hill
@@ -595,7 +565,6 @@ hex
 sprite
 creeping
 plane
-lg
 opposition
 rain
 tyrannosaurus
@@ -613,7 +582,6 @@ warding
 explanation
 hindering
 weather
-sr
 hoard
 video
 pinnacle
@@ -665,7 +633,6 @@ puppeteer
 service
 shot
 darkness
-q
 attraction
 updating
 submitting
@@ -678,7 +645,6 @@ invisibility
 depression
 disbelief
 queen
-y
 design
 vitality
 equipment
@@ -715,20 +681,16 @@ product
 inn
 mood
 awareness
-gp
-p
 advertisement
 succeeding
 existing
 charge
 validity
 nunchaku
-su
 none
 representation
 completion
 restoration
-cn
 caption
 variant
 defeating
@@ -797,10 +759,8 @@ sight
 period
 law
 burrowing
-en
 entanglement
 revenue
-h
 ammunition
 dragging
 grease
@@ -854,7 +814,6 @@ duration
 ointment
 provision
 convenience
-ft
 thug
 planar
 illusionist
@@ -871,7 +830,6 @@ thundering
 starting
 frenzy
 implosion
-mi
 element
 network
 nightshade
@@ -891,7 +849,6 @@ reference
 evasion
 pilfering
 monster
-ng
 climate
 roll
 image
